@@ -29,8 +29,14 @@ import type { ActionPlan } from '@/lib/ai/negotiator-prompt'
 
 type StreamFrame =
   | { type: 'token'; value: string }
-  | { type: 'done'; conversationId: string }
+  | { type: 'done'; conversationId: string; model?: string }
   | { type: 'error'; message: string }
+
+/** Build a human-readable fallback indicator for the retry badge. */
+function getFallbackLabel(model?: string): string | null {
+  if (model === 'fallback') return 'Offline mode — personalized local advice'
+  return null
+}
 
 export function NegotiatorClient({
   initialMessages = [],
@@ -128,6 +134,7 @@ export function NegotiatorClient({
         role: 'assistant',
         content: '',
         streaming: true,
+        model: undefined,
       }
       setMessages((prev) => [...prev, userMsg, assistantMsg])
       setStreaming(true)
@@ -179,7 +186,9 @@ export function NegotiatorClient({
                 setConversationId(frame.conversationId)
                 setMessages((prev) =>
                   prev.map((m) =>
-                    m.id === assistantMsg.id ? { ...m, streaming: false } : m,
+                    m.id === assistantMsg.id
+                      ? { ...m, streaming: false, model: frame.model }
+                      : m,
                   ),
                 )
                 router.refresh()
@@ -212,6 +221,19 @@ export function NegotiatorClient({
       description: `${plan.title} — we'll track this as a goal.`,
     })
   }, [])
+
+  /** Find the last user message for retry */
+  const getLastUserMessage = React.useCallback((): string | null => {
+    for (let i = messages.length - 1; i >= 0; i--) {
+      if (messages[i].role === 'user') return messages[i].content
+    }
+    return null
+  }, [messages])
+
+  const handleRetry = React.useCallback(() => {
+    const lastMsg = getLastUserMessage()
+    if (lastMsg) sendMessage(lastMsg)
+  }, [getLastUserMessage, sendMessage])
 
   const handleSuggestedPrompt = React.useCallback(
     (prompt: string) => {
@@ -387,7 +409,7 @@ export function NegotiatorClient({
             <>
               <div className="mx-auto max-w-3xl space-y-4">
                 {messages.map((msg) => (
-                  <ChatMessage key={msg.id} message={msg} onAcceptPlan={handleAcceptPlan} />
+                  <ChatMessage key={msg.id} message={msg} onAcceptPlan={handleAcceptPlan} onRetry={handleRetry} />
                 ))}
               </div>
               <div className="h-2" />

@@ -102,8 +102,24 @@ export async function POST(request: Request) {
     { role: 'user', content: message },
   ]
 
+  // --- Build AI context from twin data (used for personalized fallbacks) ---
+  const aiContext = {
+    totalKg: twinData.current.totalAnnualKg,
+    dimensions: twinData.dimensions.map(d => ({
+      label: d.label,
+      annualKg: d.annualKg,
+      share: d.share,
+    })),
+    opportunities: twinData.opportunities.map(o => ({
+      title: o.title,
+      potentialKg: o.potentialKg,
+      difficulty: o.difficulty,
+    })),
+    tier: { name: twinData.tier.name },
+  }
+
   // --- Call the unified AI facade ---
-  const aiResult = await generateNegotiatorResponse(userId, messages)
+  const aiResult = await generateNegotiatorResponse(userId, messages, aiContext)
 
   // --- Handle rate limit / hard error ---
   if (!aiResult.ok) {

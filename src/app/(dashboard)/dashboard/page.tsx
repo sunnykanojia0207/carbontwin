@@ -8,6 +8,7 @@ import { getDashboardData } from '@/lib/services/dashboard.service'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { DashboardTabs } from '@/components/dashboard/dashboard-tabs'
+import { DashboardHero } from '@/components/dashboard/dashboard-hero'
 import {
   LoadDemoDataButton,
   ResetDataButton,
@@ -38,7 +39,12 @@ export default async function DashboardPage() {
   if (data.isEmpty) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6 lg:py-10">
-        <DashboardHeader firstName={firstName} date={today} />
+        <div className="mb-6">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            Welcome, {firstName}
+          </h1>
+          <p className="text-muted-foreground text-sm">{today}</p>
+        </div>
         <Card className="mt-6 border-primary/30 bg-primary/5">
           <CardContent className="flex flex-col items-center gap-5 py-12 text-center">
             <span className="bg-primary/15 text-primary flex size-14 items-center justify-center rounded-full">
@@ -72,38 +78,11 @@ export default async function DashboardPage() {
   // --- Populated dashboard ---
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:py-8">
-      <DashboardHeader
-        firstName={firstName}
-        date={today}
-        right={<ResetDataButton />}
-      />
+      <DashboardHero data={data} firstName={firstName} date={today} />
 
       <div className="mt-5">
         <DashboardTabs data={data} />
       </div>
-    </div>
-  )
-}
-
-// --- Header ---
-function DashboardHeader({
-  firstName,
-  date,
-  right,
-}: {
-  firstName: string
-  date: string
-  right?: React.ReactNode
-}) {
-  return (
-    <div className="flex flex-wrap items-end justify-between gap-3">
-      <div>
-        <h1 className="text-2xl font-semibold tracking-tight">
-          Welcome, {firstName}
-        </h1>
-        <p className="text-muted-foreground text-sm">{date}</p>
-      </div>
-      {right && <div className="flex items-center gap-2">{right}</div>}
     </div>
   )
 }

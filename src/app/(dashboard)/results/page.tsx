@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Camera, ArrowRight, Inbox } from 'lucide-react'
+import { Camera, ArrowRight, Inbox, DollarSign, Leaf, Lightbulb, BarChart4 } from 'lucide-react'
 
 import { getServerSession } from '@/lib/auth'
 
@@ -7,6 +7,7 @@ import { authOptions } from '@/lib/auth'
 import { getResultsData } from '@/lib/services/results.service'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { cn } from '@/lib/utils'
 import { ResultsTabs } from '@/components/results/results-tabs'
 
 // ============================================================================
@@ -21,6 +22,13 @@ export const metadata = {
   title: 'Results',
 }
 
+const RESULTS_FEATURES = [
+  { icon: Lightbulb, label: 'Appliance detection', desc: 'AI identifies every device', color: 'text-amber-500', bg: 'bg-amber-500/10' },
+  { icon: Leaf, label: 'Carbon impact', desc: 'Kg CO₂e per appliance', color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+  { icon: DollarSign, label: 'Cost analysis', desc: 'Annual energy cost estimates', color: 'text-blue-500', bg: 'bg-blue-500/10' },
+  { icon: BarChart4, label: 'Improvements', desc: 'Upgrade recommendations', color: 'text-violet-500', bg: 'bg-violet-500/10' },
+]
+
 export default async function ResultsPage({
   searchParams,
 }: {
@@ -33,18 +41,20 @@ export default async function ResultsPage({
   // --- Empty state ---
   if (data.isEmpty) {
     return (
-      <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6 lg:py-10">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:py-10">
         <div className="space-y-1.5">
           <h1 className="text-2xl font-semibold tracking-tight">Results</h1>
           <p className="text-muted-foreground text-sm">
             No appliance scans yet. Upload a room photo to see your impact.
           </p>
         </div>
-        <Card className="mt-6 border-primary/30 bg-primary/5">
-          <CardContent className="flex flex-col items-center gap-5 py-12 text-center">
-            <span className="bg-primary/15 text-primary flex size-14 items-center justify-center rounded-full">
+        <Card className="mt-6 overflow-hidden border-primary/30 bg-gradient-to-br from-primary/5 to-primary/0">
+          <CardContent className="flex flex-col items-center gap-6 p-8 text-center">
+            {/* Icon */}
+            <span className="bg-primary/15 text-primary flex size-16 items-center justify-center rounded-2xl ring-1 ring-primary/20">
               <Inbox className="size-7" />
             </span>
+
             <div className="max-w-md space-y-2">
               <h2 className="text-xl font-semibold tracking-tight">
                 No results to show yet
@@ -54,6 +64,23 @@ export default async function ResultsPage({
                 estimate their carbon and cost impact, and suggest improvements.
               </p>
             </div>
+
+            {/* Feature preview chips */}
+            <div className="grid w-full max-w-sm grid-cols-2 gap-2 sm:grid-cols-4">
+              {RESULTS_FEATURES.map((feature) => (
+                <div
+                  key={feature.label}
+                  className="flex flex-col items-center gap-1.5 rounded-xl border border-dashed border-muted-foreground/20 p-2.5 transition-all hover:border-foreground/20"
+                >
+                  <span className={cn('flex size-8 items-center justify-center rounded-lg', feature.bg)}>
+                    <feature.icon className={cn('size-4', feature.color)} />
+                  </span>
+                  <span className="text-[10px] font-medium leading-tight">{feature.label}</span>
+                  <span className="text-[9px] leading-tight text-muted-foreground">{feature.desc}</span>
+                </div>
+              ))}
+            </div>
+
             <Button asChild size="lg">
               <Link href="/upload">
                 <Camera className="size-4" />

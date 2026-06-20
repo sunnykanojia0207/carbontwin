@@ -326,9 +326,75 @@ Respond with ONLY a JSON object (no markdown):
 // 4. NEGOTIATOR CHAT (text, streaming via word-chunks)
 // ============================================================================
 
+/**
+ * Generate personalized local fallback advice when Gemini is unavailable.
+ * Uses the user's actual footprint data to create meaningful recommendations.
+ */
+function generateLocalFallbackAdvice(
+  context: { totalKg: number; dimensions: Array<{ label: string; annualKg: number; share: number }>; opportunities: Array<{ title: string; potentialKg: number; difficulty: string }>; tier: { name: string } },
+  userMessage: string,
+): string {
+  const { totalKg, dimensions, opportunities, tier } = context
+
+  // Find the user's highest emission dimension
+  const sorted = [...dimensions].sort((a, b) => b.annualKg - a.annualKg)
+  const topDim = sorted[0]
+  const topDimLabel = topDim?.label?.toLowerCase() ?? 'home energy'
+
+  // Pick the best opportunity
+  const topOpp = opportunities?.[0]
+  const savings = topOpp?.potentialKg ?? Math.round(totalKg * 0.1)
+  const difficultyLabels: Record<string, string> = { EASY: '🟢 Easy', MEDIUM: '🟡 Medium', HARD: '🔴 Challenging' }
+  const difficulty = difficultyLabels[topOpp?.difficulty ?? 'EASY'] ?? '🟢 Easy'
+  const savingsTons = (savings / 1000).toFixed(1)
+  const savingsPercent = totalKg > 0 ? Math.round((savings / totalKg) * 100) : 10
+
+  // Cost savings estimate (~$0.15 per kWh, ~0.4 kg CO₂e per kWh)
+  const costSavings = Math.round(savings * 0.15 / 0.4)
+
+  // Generate 3 personalized recommendations based on the top dimensions
+  const recommendations = sorted.slice(0, 3).map((dim, i) => {
+    const dimReduction = Math.round(dim.annualKg * 0.15)
+    const dimCost = Math.round(dimReduction * 0.15 / 0.4)
+    const difficultyLevel = i === 0 ? 'Medium' : i === 1 ? 'Easy' : 'Easy'
+    return `**${i + 1}. Focus on ${dim.label}** — your largest category at ${dim.annualKg.toLocaleString()} kg/yr (${dim.share}% of your footprint)\n   - Cut by 15% → save ~${dimReduction.toLocaleString()} kg CO₂e/yr\n   - Estimated cost savings: ~$${dimCost}/yr\n   - Difficulty: ${difficultyLevel}`
+  })
+
+  const messageLower = userMessage.toLowerCase()
+
+  // Detect intent from user's message for more relevant responses
+  const intentInfo = messageLower.includes('transport') || messageLower.includes('car') || messageLower.includes('drive') || messageLower.includes('flight')
+    ? dimensions.find(d => d.label?.toLowerCase().includes('transport'))
+      ? `Your transport footprint is **${dimensions.find(d => d.label?.toLowerCase().includes('transport'))!.annualKg.toLocaleString()} kg/yr**. Consider carpooling, public transit, or replacing one short-haul flight with rail.`
+      : ''
+    : messageLower.includes('food') || messageLower.includes('diet') || messageLower.includes('eat') || messageLower.includes('meat')
+    ? 'For diet: even 2 plant-based days per week saves ~180 kg CO₂e/yr. Start with meals you already enjoy.'
+    : messageLower.includes('home') || messageLower.includes('energy') || messageLower.includes('electric')
+    ? `Your home energy footprint is significant. LED upgrades pay back in months, and smart power strips eliminate standby waste (up to 10% of your bill).`
+    : messageLower.includes('goal') || messageLower.includes('target')
+    ? `Given your ${tier.name} tier, a realistic first goal is reducing your ${topDimLabel} by 10-15%. That's ~${savings.toLocaleString()} kg CO₂e/yr.`
+    : ''
+
+  return `**AI is temporarily unavailable.** Here are personalized recommendations based on your climate profile:
+
+${recommendations.join('\n\n')}
+
+**Top opportunity: ${topOpp?.title ?? `Reduce your ${topDimLabel}`}**
+- 💨 **CO₂ reduction:** ${savingsTons} tonnes/yr (${savingsPercent}% of your footprint)
+- 💰 **Cost impact:** ~$${costSavings}/yr saved
+- 📊 **Difficulty:** ${difficulty}
+
+${intentInfo ? `\n**About your question:** ${intentInfo}` : `\n**Tip:** Your ${topDimLabel} is your biggest lever. Even a 10% cut there saves ~${Math.round(totalKg * 0.1).toLocaleString()} kg/yr.`}
+
+---
+
+*Want to try again? Tap retry below to reach the live AI — or keep exploring your Dashboard and Climate Twin for more insights.*`
+}
+
 export async function generateNegotiatorResponse(
   userId: string,
   messages: Array<{ role: 'system' | 'user' | 'assistant'; content: string }>,
+  context?: { totalKg: number; dimensions: Array<{ label: string; annualKg: number; share: number }>; opportunities: Array<{ title: string; potentialKg: number; difficulty: string }>; tier: { name: string } },
 ): Promise<AiResult<string>> {
   // NOT cached (conversational)
   const rl = checkRateLimit(userId, 'negotiator')
@@ -352,17 +418,27 @@ export async function generateNegotiatorResponse(
   }, 'negotiator')
 
   if (!result.ok) {
-    // Deterministic fallback — inform user about quota if applicable
+    // Track quota exhaustion
     const isQuota = result.error.code === 'API_ERROR' && /quota|exhausted|RESOURCE_EXHAUSTED/i.test(result.error.message)
     if (isQuota) {
-      // Track quota exhaustion so the settings page can show a warning
       LAST_QUOTA_ERROR[userId] = Date.now()
     }
+
+    // Generate personalized fallback using user's footprint data
+    if (context && context.dimensions && context.dimensions.length > 0) {
+      const lastUserMessage = [...messages].reverse().find(m => m.role === 'user')
+      return {
+        ok: true,
+        data: generateLocalFallbackAdvice(context, lastUserMessage?.content ?? ''),
+        cached: false,
+        model: 'fallback',
+      }
+    }
+
+    // Static fallback as a last resort (no context available)
     return {
       ok: true,
-      data: isQuota
-        ? "I'd love to help, but the AI service is currently at capacity (API quota reached). Your messages are being saved, and I'll respond with Gemini-powered advice once quota resets. In the meantime, try exploring your Climate Twin or check the Dashboard for your latest trends."
-        : "I'm having trouble connecting right now. Based on your footprint, I'd suggest starting with your highest-emission category — even a small reduction there compounds. What dimension would you like to explore?",
+      data: "I'm having trouble connecting right now. Based on your footprint, I'd suggest starting with your highest-emission category — even a small reduction there compounds. What dimension would you like to explore?",
       cached: false,
       model: 'fallback',
     }

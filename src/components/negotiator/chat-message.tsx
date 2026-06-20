@@ -2,7 +2,7 @@
 
 import ReactMarkdown from 'react-markdown'
 import { motion } from 'framer-motion'
-import { Sparkles, User } from 'lucide-react'
+import { Sparkles, User, RefreshCw, AlertTriangle } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { ActionPlanCard } from '@/components/negotiator/action-plan-card'
@@ -25,6 +25,7 @@ export type ChatMessageData = {
   role: 'user' | 'assistant'
   content: string
   streaming?: boolean
+  model?: string
 }
 
 // ---------------------------------------------------------------------------
@@ -84,11 +85,14 @@ function MessageContent({ text }: { text: string }) {
 export function ChatMessage({
   message,
   onAcceptPlan,
+  onRetry,
 }: {
   message: ChatMessageData
   onAcceptPlan?: (plan: ActionPlan) => void
+  onRetry?: () => void
 }) {
   const isUser = message.role === 'user'
+  const isFallback = message.model === 'fallback'
 
   // Parse action plans from assistant messages
   const { plans, cleanText } = isUser
@@ -104,8 +108,15 @@ export function ChatMessage({
     >
       {/* Avatar column — non-user only */}
       {!isUser && (
-        <span className="bg-primary/10 text-primary mt-1 flex size-8 shrink-0 items-center justify-center rounded-full ring-1 ring-border">
-          <Sparkles className="size-4" />
+        <span
+          className={cn(
+            'mt-1 flex size-8 shrink-0 items-center justify-center rounded-full ring-1',
+            isFallback
+              ? 'bg-amber-100 text-amber-600 ring-amber-200 dark:bg-amber-900/30 dark:text-amber-400 dark:ring-amber-800'
+              : 'bg-primary/10 text-primary ring-border',
+          )}
+        >
+          {isFallback ? <AlertTriangle className="size-4" /> : <Sparkles className="size-4" />}
         </span>
       )}
 
@@ -117,10 +128,11 @@ export function ChatMessage({
             className={cn(
               'w-fit text-sm leading-relaxed',
               isUser
-                ? // User bubble — dark pill, right-aligned, no padding-right asymmetry
+                ? // User bubble — dark pill, right-aligned
                   'rounded-2xl rounded-tr-md bg-primary px-4 py-2.5 text-primary-foreground shadow-sm'
                 : // Assistant bubble — white/soft, left-aligned, with border
-                  'prose prose-sm dark:prose-invert max-w-none rounded-2xl rounded-tl-md border bg-card px-4 py-3 shadow-xs',
+                  'max-w-none rounded-2xl rounded-tl-md border bg-card px-4 py-3 shadow-xs',
+              isFallback && !isUser && 'border-amber-200 dark:border-amber-800',
             )}
           >
             {isUser ? (
@@ -142,6 +154,23 @@ export function ChatMessage({
               <span>Thinking</span>
               <StreamingDots />
             </div>
+          </div>
+        )}
+
+        {/* Fallback badge + retry button */}
+        {isFallback && !message.streaming && onRetry && (
+          <div className="flex items-center gap-2">
+            <span className="inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-0.5 text-[10px] font-medium uppercase tracking-wider text-amber-700 dark:border-amber-800 dark:bg-amber-900/20 dark:text-amber-400">
+              <AlertTriangle className="size-3" />
+              Offline
+            </span>
+            <button
+              onClick={onRetry}
+              className="inline-flex items-center gap-1 rounded-full border bg-card px-2.5 py-0.5 text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <RefreshCw className="size-3" />
+              Retry with AI
+            </button>
           </div>
         )}
 
