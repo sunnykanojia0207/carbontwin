@@ -1,0 +1,188 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - link "CarbonTwin" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img [ref=e8]
+        - generic [ref=e12]: CarbonTwin
+      - navigation [ref=e13]:
+        - link "Features" [ref=e14] [cursor=pointer]:
+          - /url: "#features"
+        - link "How it Works" [ref=e15] [cursor=pointer]:
+          - /url: "#how-it-works"
+        - link "Enterprise" [ref=e16] [cursor=pointer]:
+          - /url: "#enterprise"
+        - generic [ref=e17]:
+          - link "Log in" [ref=e18] [cursor=pointer]:
+            - /url: /login
+            - button "Log in" [ref=e19]
+          - link "Start Free Trial" [ref=e20] [cursor=pointer]:
+            - /url: /signup
+            - button "Start Free Trial" [ref=e21]
+  - main [ref=e22]:
+    - generic [ref=e24]:
+      - generic [ref=e25]:
+        - generic [ref=e28]: Carbon Engine v2.0 Live
+        - heading "Turn invisible emissions into visible savings." [level=1] [ref=e29]
+        - paragraph [ref=e30]: CarbonTwin tracks your digital footprint in real-time, gamifies reduction with Eco-Scores, and uses an aggressive AI coach to save your company money and the planet.
+        - generic [ref=e31]:
+          - link "Start Free Trial" [ref=e32] [cursor=pointer]:
+            - /url: /signup
+            - button "Start Free Trial" [ref=e33]:
+              - text: Start Free Trial
+              - img
+          - link "Try Live Demo" [ref=e34] [cursor=pointer]:
+            - /url: /login
+            - button "Try Live Demo" [ref=e35]
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - generic [ref=e41]: CO₂ Tracked
+            - generic [ref=e42]: 2.4M kg
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - img [ref=e45]
+              - generic [ref=e48]: Money Saved
+            - generic [ref=e49]: ₹18.5M
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - generic [ref=e54]: Active Users
+            - generic [ref=e55]: 14,200+
+      - generic [ref=e56]:
+        - generic [ref=e58]:
+          - img [ref=e60]
+          - generic [ref=e63]:
+            - paragraph [ref=e64]: Cost Avoided
+            - paragraph [ref=e65]: +₹4,250
+        - generic [ref=e67]:
+          - img [ref=e69]
+          - generic [ref=e71]:
+            - paragraph [ref=e72]: Carbon Saved
+            - paragraph [ref=e73]: 12.4 kg
+    - generic [ref=e78]:
+      - generic [ref=e79]:
+        - heading "The complete toolkit for digital sustainability" [level=2] [ref=e80]
+        - paragraph [ref=e81]: We don't just measure carbon. We attach a rupee value to it, gamify the reduction process, and use AI to enforce better habits.
+      - generic [ref=e82]:
+        - generic [ref=e84]:
+          - generic [ref=e85]:
+            - img [ref=e87]
+            - generic [ref=e89]: Real-time Telemetry
+          - generic [ref=e91]: Our Chrome Extension silently tracks browser tabs, video quality, and cloud usage to calculate your exact digital footprint.
+        - generic [ref=e93]:
+          - generic [ref=e94]:
+            - img [ref=e96]
+            - generic [ref=e99]: Aggressive AI Coach
+          - generic [ref=e101]: Powered by Grok API, our AI doesn't sugarcoat. It analyzes your habits and demands changes that save money and carbon.
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - img [ref=e106]
+            - generic [ref=e112]: Gamified Eco-Scores
+          - generic [ref=e114]: Compete with coworkers on the live leaderboard. Earn points for sustainable habits and trade them peer-to-peer.
+        - generic [ref=e116]:
+          - generic [ref=e117]:
+            - img [ref=e119]
+            - generic [ref=e121]: Hardware Lifecycle ML
+          - generic [ref=e123]: Predict exactly when to replace employee laptops based on battery degradation logs to maximize eco-efficiency.
+        - generic [ref=e125]:
+          - generic [ref=e126]:
+            - img [ref=e128]
+            - generic [ref=e130]: Doomscroll Tax Engine
+          - generic [ref=e132]: Infinite scrolling burns carbon. We calculate the cost of social media binges and trigger browser warnings.
+        - generic [ref=e134]:
+          - generic [ref=e135]:
+            - img [ref=e137]
+            - generic [ref=e140]: ESG Export for CFOs
+          - generic [ref=e142]: One-click generation of Scope 2 and Scope 3 digital emissions reports formatted perfectly for corporate compliance.
+    - generic [ref=e147]:
+      - generic [ref=e148]:
+        - generic [ref=e150]: 0 kg
+        - paragraph [ref=e151]: CO₂ Prevented
+      - generic [ref=e152]:
+        - generic [ref=e154]: ₹0
+        - paragraph [ref=e155]: Corporate Savings
+      - generic [ref=e156]:
+        - generic [ref=e158]: 0%
+        - paragraph [ref=e159]: Avg. Habit Change
+      - generic [ref=e160]:
+        - generic [ref=e162]: 0+
+        - paragraph [ref=e163]: Enterprise Clients
+    - generic [ref=e168]:
+      - heading "Ready to stop burning money and carbon?" [level=2] [ref=e169]
+      - paragraph [ref=e170]: Deploy CarbonTwin to your organization in minutes. Watch your employees compete to reduce your AWS bill and carbon footprint.
+      - generic [ref=e171]:
+        - link "Start Free Trial" [ref=e172] [cursor=pointer]:
+          - /url: /signup
+          - button "Start Free Trial" [ref=e173]:
+            - text: Start Free Trial
+            - img
+        - link "Schedule Demo" [ref=e174] [cursor=pointer]:
+          - /url: mailto:pandey.aditya4272@gmail.com?subject=CarbonTwin%20—%20Schedule%20a%20Demo&body=Hi%2C%20I%27d%20like%20to%20schedule%20a%20demo%20of%20CarbonTwin.%0A%0ACompany%3A%0ATeam%20size%3A%0APreferred%20time%3A%0A
+          - button "Schedule Demo" [ref=e175]
+      - paragraph [ref=e176]: No credit card required. 14-day free trial for up to 50 users.
+  - contentinfo [ref=e177]:
+    - generic [ref=e178]:
+      - generic [ref=e179]:
+        - generic [ref=e180]:
+          - generic [ref=e181]:
+            - img [ref=e182]
+            - generic [ref=e185]: CarbonTwin
+          - paragraph [ref=e186]: Turning invisible digital carbon emissions into visible financial losses. Built for modern, eco-conscious teams.
+          - generic [ref=e187]:
+            - link [ref=e188] [cursor=pointer]:
+              - /url: https://www.linkedin.com/in/adityapandey2607/
+              - img [ref=e189]
+            - link [ref=e193] [cursor=pointer]:
+              - /url: https://github.com/AdityaPandey03/carbontwin
+              - img [ref=e194]
+            - link [ref=e197] [cursor=pointer]:
+              - /url: mailto:pandey.aditya4272@gmail.com
+              - img [ref=e198]
+        - generic [ref=e201]:
+          - heading "Product" [level=3] [ref=e202]
+          - list [ref=e203]:
+            - listitem [ref=e204]:
+              - link "Features" [ref=e205] [cursor=pointer]:
+                - /url: "#features"
+            - listitem [ref=e206]:
+              - link "How it Works" [ref=e207] [cursor=pointer]:
+                - /url: "#how-it-works"
+            - listitem [ref=e208]:
+              - link "AI Coach" [ref=e209] [cursor=pointer]:
+                - /url: /login
+            - listitem [ref=e210]:
+              - link "Pricing" [ref=e211] [cursor=pointer]:
+                - /url: "#enterprise"
+        - generic [ref=e212]:
+          - heading "Resources" [level=3] [ref=e213]
+          - list [ref=e214]:
+            - listitem [ref=e215]:
+              - link "Documentation" [ref=e216] [cursor=pointer]:
+                - /url: https://github.com/AdityaPandey03/carbontwin#readme
+            - listitem [ref=e217]:
+              - link "API Reference" [ref=e218] [cursor=pointer]:
+                - /url: https://github.com/AdityaPandey03/carbontwin#-api-reference
+            - listitem [ref=e219]:
+              - link "GitHub" [ref=e220] [cursor=pointer]:
+                - /url: https://github.com/AdityaPandey03/carbontwin
+            - listitem [ref=e221]:
+              - link "API Status" [ref=e222] [cursor=pointer]:
+                - /url: https://carbontwin.onrender.com/health
+        - generic [ref=e223]:
+          - heading "Company" [level=3] [ref=e224]
+          - list [ref=e225]:
+            - listitem [ref=e226]:
+              - link "Get Started" [ref=e227] [cursor=pointer]:
+                - /url: /signup
+            - listitem [ref=e228]:
+              - link "Contact" [ref=e229] [cursor=pointer]:
+                - /url: mailto:pandey.aditya4272@gmail.com?subject=CarbonTwin%20—%20Schedule%20a%20Demo
+            - listitem [ref=e230]:
+              - link "Log in" [ref=e231] [cursor=pointer]:
+                - /url: /login
+      - generic [ref=e232]:
+        - paragraph [ref=e233]: © 2026 CarbonTwin · MIT licensed · Open-source
+        - link "All systems operational" [ref=e236] [cursor=pointer]:
+          - /url: https://carbontwin.onrender.com/health

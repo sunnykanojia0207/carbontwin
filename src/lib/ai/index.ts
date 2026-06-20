@@ -98,12 +98,26 @@ Also provide:
 Respond with ONLY a JSON object, no markdown formatting:
 {"appliances":[{"name":"...","type":"...","estimatedWatts":0,"estimatedHoursPerDay":0,"confidence":0.9,"notes":"..."}],"roomType":"...","summary":"..."}`
 
-const DETECTION_FALLBACK: DetectionResult = {
-  appliances: [
-    { name: 'Generic appliance', type: 'OTHER', estimatedWatts: 100, estimatedHoursPerDay: 4, confidence: 0.3, notes: 'AI unavailable — generic estimate' },
-  ],
-  roomType: 'unknown',
-  summary: 'AI detection was unavailable. A generic estimate has been provided — please edit the details manually.',
+function getDetectionFallback(): DetectionResult {
+  const isConfigured = AI_CONFIGURED
+  return {
+    appliances: [
+      {
+        name: 'Unidentified appliance',
+        type: 'OTHER',
+        estimatedWatts: 100,
+        estimatedHoursPerDay: 4,
+        confidence: 0.3,
+        notes: isConfigured
+          ? 'AI quota exhausted — generic estimate. Edit details or try again later.'
+          : 'AI not configured — generic estimate. Add a GEMINI_API_KEY in Settings to enable AI detection.',
+      },
+    ],
+    roomType: 'Room',
+    summary: isConfigured
+      ? 'AI detection quota exceeded. The result below is a placeholder — tap "Edit" to describe your room and appliances manually.'
+      : 'AI detection is not configured. Set your GEMINI_API_KEY in Vercel environment variables to enable automatic detection.',
+  }
 }
 
 export async function detectAppliances(
@@ -138,7 +152,7 @@ export async function detectAppliances(
   if (!result.ok) {
     return {
       ok: true,
-      data: DETECTION_FALLBACK,
+      data: getDetectionFallback(),
       cached: false,
       model: 'fallback',
     }
