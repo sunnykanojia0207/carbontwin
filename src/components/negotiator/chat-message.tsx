@@ -2,7 +2,7 @@
 
 import ReactMarkdown from 'react-markdown'
 import { motion } from 'framer-motion'
-import { Sparkles, User, RefreshCw, AlertTriangle } from 'lucide-react'
+import { Sparkles, RefreshCw, AlertTriangle } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 import { ActionPlanCard } from '@/components/negotiator/action-plan-card'

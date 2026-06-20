@@ -100,24 +100,6 @@ function ConfettiParticles({ count, color }: { count: number; color: string }) {
   )
 }
 
-// --- Toast celebration (auto-dismiss) ---
-export function showAchievementToast(
-  title: string,
-  description: string,
-  level: AchievementLevel = 'EASY',
-) {
-  // Create a temporary container
-  const container = document.createElement('div')
-  container.className = 'fixed bottom-4 right-4 z-[100]'
-  document.body.appendChild(container)
-
-  const root = document.createElement('div')
-  container.appendChild(root)
-
-  // Actually we'll use sonner toast with a custom component
-  // Import sonner here won't work, so let's use a different approach
-}
-
 // --- Modal celebration ---
 interface CelebrationModalProps {
   open: boolean

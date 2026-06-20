@@ -16,7 +16,6 @@ import { cn } from '@/lib/utils'
 import { formatKg } from '@/components/dashboard/format'
 import { TrendIndicator } from '@/components/dashboard/trend-indicator'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import type { DashboardData } from '@/lib/services/dashboard.service'
 
 // ============================================================================
@@ -36,7 +35,6 @@ const QUICK_ACTIONS = [
     icon: ScanLine,
     label: 'Upload & Detect',
     desc: 'Snap a room photo',
-    gradient: 'from-emerald-500/10 to-emerald-500/5',
     iconBg: 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400',
   },
   {
@@ -44,7 +42,6 @@ const QUICK_ACTIONS = [
     icon: SlidersHorizontal,
     label: 'Simulator',
     desc: 'Model what-if changes',
-    gradient: 'from-blue-500/10 to-blue-500/5',
     iconBg: 'bg-blue-500/10 text-blue-600 dark:text-blue-400',
   },
   {
@@ -52,7 +49,6 @@ const QUICK_ACTIONS = [
     icon: Handshake,
     label: 'AI Negotiator',
     desc: 'Get personalized advice',
-    gradient: 'from-violet-500/10 to-violet-500/5',
     iconBg: 'bg-violet-500/10 text-violet-600 dark:text-violet-400',
   },
   {
@@ -60,7 +56,6 @@ const QUICK_ACTIONS = [
     icon: UsersRound,
     label: 'Climate Twin',
     desc: 'Your carbon persona',
-    gradient: 'from-amber-500/10 to-amber-500/5',
     iconBg: 'bg-amber-500/10 text-amber-600 dark:text-amber-400',
   },
 ] as const
@@ -195,7 +190,7 @@ export function DashboardHero({
 
         {/* Quick action chips */}
         <div className="mt-5 grid grid-cols-2 gap-2 sm:grid-cols-4">
-          {QUICK_ACTIONS.map(({ href, icon: Icon, label, desc, gradient, iconBg }) => (
+          {QUICK_ACTIONS.map(({ href, icon: Icon, label, desc, iconBg }) => (
             <Link
               key={href}
               href={href}

@@ -32,12 +32,6 @@ type StreamFrame =
   | { type: 'done'; conversationId: string; model?: string }
   | { type: 'error'; message: string }
 
-/** Build a human-readable fallback indicator for the retry badge. */
-function getFallbackLabel(model?: string): string | null {
-  if (model === 'fallback') return 'Offline mode — personalized local advice'
-  return null
-}
-
 export function NegotiatorClient({
   initialMessages = [],
   initialConversationId,

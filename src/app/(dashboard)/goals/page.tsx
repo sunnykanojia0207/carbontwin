@@ -1,11 +1,9 @@
-import { Target, ArrowRight, Sparkles, Leaf, Zap, ShoppingBag, Car } from 'lucide-react'
-import Link from 'next/link'
+import { Target, Leaf, Zap, ShoppingBag, Car } from 'lucide-react'
 
 import { getServerSession } from '@/lib/auth'
 
 import { authOptions } from '@/lib/auth'
 import { getGoalsData } from '@/lib/services/goals.service'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { EmptyState, type AchievementPreview } from '@/components/dashboard/empty-state'
 import { CreateGoalDialog } from '@/components/goals/create-goal-dialog'
