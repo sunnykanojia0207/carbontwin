@@ -1,5 +1,6 @@
 'use client'
 
+import * as React from 'react'
 import {
   Eye,
   Monitor,
@@ -35,66 +36,69 @@ interface ResultsTabsProps {
 }
 
 export function ResultsTabs({ data, scanId }: ResultsTabsProps) {
-  const tabs: TabItem[] = [
-    {
-      value: 'overview',
-      label: 'Overview',
-      icon: Eye,
-      content: (
-        <div className="space-y-4">
-          <CarbonOverview kpis={data.kpis} />
-        </div>
-      ),
-    },
-    {
-      value: 'appliances',
-      label: 'Appliances',
-      icon: Monitor,
-      badge: data.appliances.length,
-      content: (
-        <DetectedAppliances appliances={data.appliances} />
-      ),
-    },
-    {
-      value: 'impact',
-      label: 'Impact',
-      icon: BarChart3,
-      content: (
-        <div className="grid gap-4 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <ImpactBreakdown
-              breakdown={data.impactBreakdown}
-              totalCo2eKg={data.kpis.totalCo2eKg}
-              totalCostUsd={data.kpis.totalCostUsd}
+  const tabs: TabItem[] = React.useMemo(
+    () => [
+      {
+        value: 'overview',
+        label: 'Overview',
+        icon: Eye,
+        content: (
+          <div className="space-y-4">
+            <CarbonOverview kpis={data.kpis} />
+          </div>
+        ),
+      },
+      {
+        value: 'appliances',
+        label: 'Appliances',
+        icon: Monitor,
+        badge: data.appliances.length,
+        content: (
+          <DetectedAppliances appliances={data.appliances} />
+        ),
+      },
+      {
+        value: 'impact',
+        label: 'Impact',
+        icon: BarChart3,
+        content: (
+          <div className="grid gap-4 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <ImpactBreakdown
+                breakdown={data.impactBreakdown}
+                totalCo2eKg={data.kpis.totalCo2eKg}
+                totalCostUsd={data.kpis.totalCostUsd}
+              />
+            </div>
+            <div className="lg:col-span-8">
+              <TopEmitters emitters={data.topEmitters} />
+            </div>
+          </div>
+        ),
+      },
+      {
+        value: 'savings',
+        label: 'Savings',
+        icon: PiggyBank,
+        content: (
+          <div className="space-y-4">
+            <TrendChart
+              trend={data.trend}
+              potentialSavingsKg={data.kpis.potentialSavingsKg}
             />
+            <SavingsOpportunities opportunities={data.savingsOpportunities} />
           </div>
-          <div className="lg:col-span-8">
-            <TopEmitters emitters={data.topEmitters} />
-          </div>
-        </div>
-      ),
-    },
-    {
-      value: 'savings',
-      label: 'Savings',
-      icon: PiggyBank,
-      content: (
-        <div className="space-y-4">
-          <TrendChart
-            trend={data.trend}
-            potentialSavingsKg={data.kpis.potentialSavingsKg}
-          />
-          <SavingsOpportunities opportunities={data.savingsOpportunities} />
-        </div>
-      ),
-    },
-    {
-      value: 'insights',
-      label: 'AI Insights',
-      icon: Sparkles,
-      content: <AiInsights scanId={scanId} />,
-    },
-  ]
+        ),
+      },
+      {
+        value: 'insights',
+        label: 'AI Insights',
+        icon: Sparkles,
+        content: <AiInsights scanId={scanId} />,
+      },
+    ],
+    [data, scanId],
+  )
 
   return (
     <PageTabs

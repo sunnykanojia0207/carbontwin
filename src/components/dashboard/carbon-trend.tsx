@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ReferenceLine } from 'recharts'
 
 import {
@@ -22,7 +23,7 @@ const chartConfig = {
   goal: { label: 'Daily goal', color: 'var(--chart-4)' },
 } satisfies ChartConfig
 
-export function CarbonTrend({
+export const CarbonTrend = memo(function CarbonTrend({
   trend,
   weekKg,
 }: {
@@ -109,4 +110,4 @@ export function CarbonTrend({
       </ChartContainer>
     </SectionCard>
   )
-}
+})

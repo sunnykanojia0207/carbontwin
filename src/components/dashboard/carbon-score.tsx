@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { RadialBarChart, RadialBar, PolarAngleAxis } from 'recharts'
 
 import {
@@ -31,7 +32,7 @@ const SCORE_BANDS = [
   { min: 0, label: 'High', color: 'var(--destructive)' },
 ]
 
-export function CarbonScore({ score }: { score: DashboardData['score'] }) {
+export const CarbonScore = memo(function CarbonScore({ score }: { score: DashboardData['score'] }) {
   const band = SCORE_BANDS.find((b) => score.value >= b.min) ?? SCORE_BANDS[3]
   const data = [{ name: 'score', value: score.value, fill: band.color }]
   const trendDir =
@@ -120,4 +121,4 @@ export function CarbonScore({ score }: { score: DashboardData['score'] }) {
       </div>
     </SectionCard>
   )
-}
+})

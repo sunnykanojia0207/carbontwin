@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Area, Line, ComposedChart, CartesianGrid, XAxis, YAxis } from 'recharts'
 
 import {
@@ -17,7 +18,7 @@ import type { ResultsData } from '@/lib/services/results.service'
 // top savings suggestions are applied). Shows the gap as a filled area.
 // ============================================================================
 
-export function TrendChart({
+export const TrendChart = memo(function TrendChart({
   trend,
   potentialSavingsKg,
 }: {
@@ -135,4 +136,4 @@ export function TrendChart({
       </div>
     </SectionCard>
   )
-}
+})

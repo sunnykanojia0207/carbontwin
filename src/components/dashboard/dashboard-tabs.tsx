@@ -1,5 +1,6 @@
 'use client'
 
+import * as React from 'react'
 import {
   LayoutDashboard,
   BarChart3,
@@ -34,77 +35,80 @@ interface DashboardTabsProps {
 }
 
 export function DashboardTabs({ data }: DashboardTabsProps) {
-  const tabs: TabItem[] = [
-    {
-      value: 'overview',
-      label: 'Overview',
-      icon: LayoutDashboard,
-      content: (
-        <div className="space-y-4">
-          {/* KPI row */}
-          <KpiRow kpis={data.kpis} />
+  const tabs: TabItem[] = React.useMemo(
+    () => [
+      {
+        value: 'overview',
+        label: 'Overview',
+        icon: LayoutDashboard,
+        content: (
+          <div className="space-y-4">
+            {/* KPI row */}
+            <KpiRow kpis={data.kpis} />
 
-          {/* Score + Trend */}
+            {/* Score + Trend */}
+            <div className="grid gap-4 lg:grid-cols-12">
+              <div className="lg:col-span-4">
+                <CarbonScore score={data.score} />
+              </div>
+              <div className="lg:col-span-8">
+                <CarbonTrend trend={data.trend} weekKg={data.kpis.weekKg} />
+              </div>
+            </div>
+          </div>
+        ),
+      },
+      {
+        value: 'analytics',
+        label: 'Analytics',
+        icon: BarChart3,
+        content: (
           <div className="grid gap-4 lg:grid-cols-12">
             <div className="lg:col-span-4">
-              <CarbonScore score={data.score} />
+              <CategoryDonut
+                categories={data.categories}
+                weekKg={data.kpis.weekKg}
+              />
             </div>
             <div className="lg:col-span-8">
-              <CarbonTrend trend={data.trend} weekKg={data.kpis.weekKg} />
+              <ForecastSnapshot forecast={data.forecast} />
             </div>
           </div>
-        </div>
-      ),
-    },
-    {
-      value: 'analytics',
-      label: 'Analytics',
-      icon: BarChart3,
-      content: (
-        <div className="grid gap-4 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <CategoryDonut
-              categories={data.categories}
-              weekKg={data.kpis.weekKg}
-            />
-          </div>
-          <div className="lg:col-span-8">
-            <ForecastSnapshot forecast={data.forecast} />
-          </div>
-        </div>
-      ),
-    },
-    {
-      value: 'activity',
-      label: 'Activity',
-      icon: Activity,
-      badge: data.recentScans.length,
-      content: (
-        <div className="space-y-4">
-          <div className="grid gap-4 lg:grid-cols-12">
-            <div className="lg:col-span-4">
-              <RecentScans scans={data.recentScans} />
+        ),
+      },
+      {
+        value: 'activity',
+        label: 'Activity',
+        icon: Activity,
+        badge: data.recentScans.length,
+        content: (
+          <div className="space-y-4">
+            <div className="grid gap-4 lg:grid-cols-12">
+              <div className="lg:col-span-4">
+                <RecentScans scans={data.recentScans} />
+              </div>
+              <div className="lg:col-span-4">
+                <QuickActions />
+              </div>
+              <div className="lg:col-span-4">
+                <GoalsProgress goals={data.goals} />
+              </div>
             </div>
-            <div className="lg:col-span-4">
-              <QuickActions />
-            </div>
-            <div className="lg:col-span-4">
-              <GoalsProgress goals={data.goals} />
-            </div>
+            <RecentRecommendations recs={data.recentRecommendations} />
           </div>
-          <RecentRecommendations recs={data.recentRecommendations} />
-        </div>
-      ),
-    },
-    {
-      value: 'goals',
-      label: 'Goals',
-      icon: Target,
-      content: (
-        <GoalsProgress goals={data.goals} />
-      ),
-    },
-  ]
+        ),
+      },
+      {
+        value: 'goals',
+        label: 'Goals',
+        icon: Target,
+        content: (
+          <GoalsProgress goals={data.goals} />
+        ),
+      },
+    ],
+    [data],
+  )
 
   return (
     <PageTabs

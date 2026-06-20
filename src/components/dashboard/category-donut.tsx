@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Cell, Pie, PieChart } from 'recharts'
 
 import {
@@ -17,7 +18,7 @@ import type { DashboardData } from '@/lib/services/dashboard.service'
 // and a legend list. Clickable in a future phase; static for now.
 // ============================================================================
 
-export function CategoryDonut({
+export const CategoryDonut = memo(function CategoryDonut({
   categories,
   weekKg,
 }: {
@@ -107,4 +108,4 @@ export function CategoryDonut({
       </div>
     </SectionCard>
   )
-}
+})

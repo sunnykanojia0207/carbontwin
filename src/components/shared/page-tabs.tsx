@@ -108,16 +108,18 @@ export function PageTabs({
   const router = useRouter()
   const pathname = usePathname()
 
+  // Use a ref to avoid recreating handleValueChange when tabs array changes
+  const tabsRef = React.useRef(tabs)
+  tabsRef.current = tabs
+
   // Determine the active tab from URL or default
   const activeTab = searchParams.get(paramKey) || defaultTab || tabs[0]?.value || ''
-
-  // Only show the active tab indicator if there's a valid active tab
-  const activeTabIndex = tabs.findIndex((t) => t.value === activeTab)
 
   const handleValueChange = React.useCallback(
     (value: string) => {
       const params = new URLSearchParams(searchParams.toString())
-      if (value === (defaultTab || tabs[0]?.value || '')) {
+      const firstTabValue = tabsRef.current[0]?.value || ''
+      if (value === (defaultTab || firstTabValue)) {
         params.delete(paramKey)
       } else {
         params.set(paramKey, value)
@@ -125,7 +127,7 @@ export function PageTabs({
       const query = params.toString()
       router.push(query ? `${pathname}?${query}` : pathname, { scroll: false })
     },
-    [router, pathname, searchParams, paramKey, defaultTab, tabs],
+    [router, pathname, searchParams, paramKey, defaultTab],
   )
 
   const styles = VARIANT_STYLES[variant] ?? VARIANT_STYLES.primary
@@ -232,15 +234,19 @@ export function PageTabs({
         </ScrollArea>
       )}
 
-      {/* Tab Content Panels */}
+      {/* Tab Content Panels — forceMount keeps all panels in the DOM,
+          hidden/shown via CSS to avoid costly React mount/unmount cycles.
+          This preserves chart state (Recharts SVG, Framer Motion) when switching tabs. */}
       {tabs.map((tab) => (
         <TabsContent
           key={tab.value}
           value={tab.value}
+          forceMount
           className={cn(
             'mt-4 focus-visible:outline-none',
             isVertical && 'mt-0 flex-1',
-            activeTabIndex === -1 && 'hidden',
+            // Hide inactive panels via CSS (they stay rendered in DOM)
+            activeTab !== tab.value && 'hidden',
           )}
         >
           {tab.content}

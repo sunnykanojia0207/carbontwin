@@ -1,5 +1,6 @@
 'use client'
 
+import * as React from 'react'
 import {
   LayoutDashboard,
   Grid3x3,
@@ -34,85 +35,88 @@ interface TwinTabsProps {
 }
 
 export function TwinTabs({ data }: TwinTabsProps) {
-  const tabs: TabItem[] = [
-    {
-      value: 'overview',
-      label: 'Overview',
-      icon: LayoutDashboard,
-      content: (
-        <div className="space-y-4">
-          <TwinHero data={data} />
-          <LifestyleInputs dimensions={data.dimensions} />
-        </div>
-      ),
-    },
-    {
-      value: 'dimensions',
-      label: 'Dimensions',
-      icon: Grid3x3,
-      content: (
-        <div className="space-y-4">
-          <LifestyleInputs dimensions={data.dimensions} />
-        </div>
-      ),
-    },
-    {
-      value: 'forecast',
-      label: 'Forecast',
-      icon: TrendingUp,
-      content: (
-        <div className="space-y-4">
-          <ForecastGraphs
-            forecast={data.forecast}
-            parisTargetKg={data.current.parisTargetKg}
-            currentKg={data.current.totalAnnualKg}
-          />
-        </div>
-      ),
-    },
-    {
-      value: 'comparison',
-      label: 'Comparison',
-      icon: Radar,
-      content: (
-        <div className="grid gap-4 lg:grid-cols-12">
-          <div className="lg:col-span-5">
-            <CategoryComparison
-              radar={data.radar}
-              dimensions={data.dimensions}
-            />
+  const tabs: TabItem[] = React.useMemo(
+    () => [
+      {
+        value: 'overview',
+        label: 'Overview',
+        icon: LayoutDashboard,
+        content: (
+          <div className="space-y-4">
+            <TwinHero data={data} />
+            <LifestyleInputs dimensions={data.dimensions} />
           </div>
-          <div className="lg:col-span-7">
-            <ScenarioForecast
-              scenarios={data.scenarios}
+        ),
+      },
+      {
+        value: 'dimensions',
+        label: 'Dimensions',
+        icon: Grid3x3,
+        content: (
+          <div className="space-y-4">
+            <LifestyleInputs dimensions={data.dimensions} />
+          </div>
+        ),
+      },
+      {
+        value: 'forecast',
+        label: 'Forecast',
+        icon: TrendingUp,
+        content: (
+          <div className="space-y-4">
+            <ForecastGraphs
+              forecast={data.forecast}
               parisTargetKg={data.current.parisTargetKg}
+              currentKg={data.current.totalAnnualKg}
             />
           </div>
-        </div>
-      ),
-    },
-    {
-      value: 'risks',
-      label: 'Risks & Opportunities',
-      icon: AlertTriangle,
-      content: (
-        <div className="space-y-4">
+        ),
+      },
+      {
+        value: 'comparison',
+        label: 'Comparison',
+        icon: Radar,
+        content: (
           <div className="grid gap-4 lg:grid-cols-12">
-            <div className="lg:col-span-6">
-              <RiskAreas riskAreas={data.riskAreas} />
+            <div className="lg:col-span-5">
+              <CategoryComparison
+                radar={data.radar}
+                dimensions={data.dimensions}
+              />
             </div>
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-7">
               <ScenarioForecast
                 scenarios={data.scenarios}
                 parisTargetKg={data.current.parisTargetKg}
               />
             </div>
           </div>
-          <AiRecommendations opportunities={data.opportunities} />
-        </div>
-      ),
-    },
-  ]
+        ),
+      },
+      {
+        value: 'risks',
+        label: 'Risks & Opportunities',
+        icon: AlertTriangle,
+        content: (
+          <div className="space-y-4">
+            <div className="grid gap-4 lg:grid-cols-12">
+              <div className="lg:col-span-6">
+                <RiskAreas riskAreas={data.riskAreas} />
+              </div>
+              <div className="lg:col-span-6">
+                <ScenarioForecast
+                  scenarios={data.scenarios}
+                  parisTargetKg={data.current.parisTargetKg}
+                />
+              </div>
+            </div>
+            <AiRecommendations opportunities={data.opportunities} />
+          </div>
+        ),
+      },
+    ],
+    [data],
+  )
 
   return (
     <PageTabs

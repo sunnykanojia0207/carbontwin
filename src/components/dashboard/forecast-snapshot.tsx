@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import {
   Line,
   Area,
@@ -29,7 +30,7 @@ const chartConfig = {
   band: { label: 'Confidence', color: 'var(--primary)' },
 } satisfies ChartConfig
 
-export function ForecastSnapshot({
+export const ForecastSnapshot = memo(function ForecastSnapshot({
   forecast,
 }: {
   forecast: DashboardData['forecast']
@@ -152,4 +153,4 @@ export function ForecastSnapshot({
       </div>
     </SectionCard>
   )
-}
+})

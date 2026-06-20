@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Cell, Pie, PieChart } from 'recharts'
 
 import {
@@ -17,7 +18,7 @@ import type { ResultsData } from '@/lib/services/results.service'
 // Impact Breakdown — pie chart of annual CO₂e by appliance type.
 // ============================================================================
 
-export function ImpactBreakdown({
+export const ImpactBreakdown = memo(function ImpactBreakdown({
   breakdown,
   totalCo2eKg,
   totalCostUsd,
@@ -116,4 +117,4 @@ export function ImpactBreakdown({
       </div>
     </SectionCard>
   )
-}
+})

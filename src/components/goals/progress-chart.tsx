@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ReferenceLine } from 'recharts'
 
 import {
@@ -21,7 +22,7 @@ const chartConfig = {
   target: { label: 'Target', color: 'var(--chart-4)' },
 } satisfies ChartConfig
 
-export function ProgressChart({
+export const ProgressChart = memo(function ProgressChart({
   weeklyTrend,
 }: {
   weeklyTrend: GoalsData['weeklyTrend']
@@ -94,4 +95,4 @@ export function ProgressChart({
       </ChartContainer>
     </SectionCard>
   )
-}
+})

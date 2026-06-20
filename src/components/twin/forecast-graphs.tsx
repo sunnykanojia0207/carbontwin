@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import {
   Area,
   AreaChart,
@@ -30,7 +31,7 @@ const chartConfig = {
   aggressive: { label: 'Aggressive action', color: '#0ea5e9' },
 } satisfies ChartConfig
 
-export function ForecastGraphs({
+export const ForecastGraphs = memo(function ForecastGraphs({
   forecast,
   parisTargetKg,
   currentKg,
@@ -194,4 +195,4 @@ export function ForecastGraphs({
       </div>
     </SectionCard>
   )
-}
+})

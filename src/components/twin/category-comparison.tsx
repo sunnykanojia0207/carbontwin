@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import {
   Radar,
   RadarChart,
@@ -25,7 +26,7 @@ const chartConfig = {
   value: { label: 'Your footprint', color: 'var(--primary)' },
 } satisfies ChartConfig
 
-export function CategoryComparison({
+export const CategoryComparison = memo(function CategoryComparison({
   radar,
   dimensions,
 }: {
@@ -81,4 +82,4 @@ export function CategoryComparison({
       </div>
     </SectionCard>
   )
-}
+})

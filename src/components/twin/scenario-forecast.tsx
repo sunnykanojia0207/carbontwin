@@ -1,5 +1,6 @@
 'use client'
 
+import { memo } from 'react'
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Cell, ReferenceLine } from 'recharts'
 
 import {
@@ -21,7 +22,7 @@ const chartConfig = {
   annualKg: { label: 'Annual CO₂e', color: 'var(--primary)' },
 } satisfies ChartConfig
 
-export function ScenarioForecast({
+export const ScenarioForecast = memo(function ScenarioForecast({
   scenarios,
   parisTargetKg,
 }: {
@@ -112,4 +113,4 @@ export function ScenarioForecast({
       </div>
     </SectionCard>
   )
-}
+})
