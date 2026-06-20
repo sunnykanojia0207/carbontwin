@@ -1,0 +1,77 @@
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - link "CarbonTwin home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]:
+          - img [ref=e7]
+          - generic [ref=e12]: CarbonTwin
+      - generic [ref=e13]:
+        - heading "Understand your footprint. Decide what to change." [level=2] [ref=e14]:
+          - text: Understand your footprint.
+          - text: Decide what to change.
+        - paragraph [ref=e15]: CarbonTwin turns abstract carbon data into a personal companion that helps you track, predict, and reduce — without the guilt.
+        - list [ref=e16]:
+          - listitem [ref=e17]:
+            - img [ref=e19]
+            - generic [ref=e22]:
+              - paragraph [ref=e23]: Understand
+              - paragraph [ref=e24]: See where your emissions actually come from — in plain language.
+          - listitem [ref=e25]:
+            - img [ref=e27]
+            - generic [ref=e29]:
+              - paragraph [ref=e30]: Track
+              - paragraph [ref=e31]: Log by photo, voice, or a sentence. AI does the data entry.
+          - listitem [ref=e32]:
+            - img [ref=e34]
+            - generic [ref=e38]:
+              - paragraph [ref=e39]: Reduce
+              - paragraph [ref=e40]: Get a personal Climate Twin and goals you will actually keep.
+      - figure "MK Maya K. · early tester" [ref=e41]:
+        - blockquote [ref=e42]: “I finally understand my own footprint. The Climate Twin made it click — and I cut a flight without feeling deprived.”
+        - generic [ref=e43]:
+          - generic [ref=e44]: MK
+          - generic [ref=e45]:
+            - strong [ref=e46]: Maya K.
+            - text: · early tester
+    - generic [ref=e47]:
+      - banner [ref=e48]:
+        - button "Switch to dark mode" [ref=e49]:
+          - img
+      - main [ref=e50]:
+        - generic [ref=e52]:
+          - generic [ref=e53]:
+            - heading "Create your Climate Twin" [level=1] [ref=e54]
+            - paragraph [ref=e55]: 60 seconds to understand your footprint.
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]: Name
+              - textbox "Name" [active] [ref=e59]:
+                - /placeholder: Your name
+            - generic [ref=e60]:
+              - generic [ref=e61]: Email
+              - textbox "Email" [ref=e62]:
+                - /placeholder: you@domain.com
+            - generic [ref=e63]:
+              - generic [ref=e64]: Password
+              - generic [ref=e65]:
+                - textbox "Password" [ref=e66]:
+                  - /placeholder: At least 8 characters
+                - button "Show password" [ref=e67]:
+                  - img [ref=e68]
+            - generic [ref=e78]:
+              - generic [ref=e79]: Confirm password
+              - generic [ref=e80]:
+                - textbox "Confirm password" [ref=e81]:
+                  - /placeholder: Re-enter your password
+                - button "Show password" [ref=e82]:
+                  - img [ref=e83]
+            - button "Create account" [ref=e86]
+          - paragraph [ref=e87]:
+            - text: Already have an account?
+            - link "Log in" [ref=e88] [cursor=pointer]:
+              - /url: /login
+      - contentinfo [ref=e89]: By continuing you agree to our Terms & Privacy Policy.
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e95] [cursor=pointer]:
+    - img [ref=e96]

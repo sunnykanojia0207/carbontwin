@@ -1,0 +1,564 @@
+// ============================================================================
+// CarbonTwin — Prisma Schema
+// ----------------------------------------------------------------------------
+// PROVIDER STRATEGY
+//   Local sandbox dev  → SQLite        (provider = "sqlite", as below)
+//   Production (Vercel) → PostgreSQL   (swap provider to "postgresql")
+//
+// This schema deliberately uses ONLY portable Prisma features so the SAME file
+// runs on both databases without structural changes:
+//   • UUIDs        → String @default(uuid())   (v4, app-generated, portable)
+//   • Enum-like    → String + documented allowed values, enforced at the
+//                    application layer via Zod (src/lib/validations/*).
+//                    Prisma `enum` is unsupported on SQLite; String-backed
+//                    enums avoid a migration on provider swap and let you
+//                    add values freely without a DB migration.
+//   • Timestamps   → DateTime (UTC-normalized by Prisma)
+//   • Nested data  → Json (TEXT on SQLite, JSONB on Postgres)
+//
+// OPTIONAL PostgreSQL-NATIVE HARDENING (production-only, see migration plan):
+//   1. provider = "postgresql"
+//   2. add  @db.Uuid         to every id / *Id column
+//   3. add  @db.Timestamptz(3) to every DateTime column
+//   4. add  @db.Text         to long-form String columns
+//   5. convert String-backed enums to native `enum` types
+//   None of these alter the model graph or relations.
+// ============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ============================================================================
+// AUDIT + SOFT-DELETE CONVENTION
+// ----------------------------------------------------------------------------
+// Every table carries:
+//   createdAt   DateTime @default(now())   record creation (UTC)
+//   updatedAt   DateTime @updatedAt        last mutation
+//   deletedAt   DateTime?                  soft-delete marker (null = active)
+//
+// Soft deletes are INTENTIONALLY not auto-filtered by a client extension —
+// that hides data from your own admin/audit queries. Filtering is explicit:
+//   Active query : db.user.findMany({ where: { deletedAt: null, ... } })
+//                  or use the active() helper from src/lib/db.ts
+//   Soft delete  : db.user.update({ where:{id}, data:{ deletedAt: new Date() } })
+//   Hard delete  : db.user.delete({ where:{id} })   (reserved for GDPR erasure)
+// ============================================================================
+
+// ----------------------------------------------------------------------------
+// ENUM-ALLOWED VALUES (documented; enforced via Zod at the app layer)
+// ----------------------------------------------------------------------------
+// Plan              : FREE | PRO | TEAM
+// UnitSystem        : METRIC | IMPERIAL
+// Theme             : LIGHT | DARK | SYSTEM
+// EmailDigestFreq   : OFF | WEEKLY | MONTHLY
+// ScanType          : PHOTO | VOICE | TEXT | RECEIPT | CSV
+// ScanStatus        : PENDING | PROCESSING | COMPLETED | FAILED | CANCELLED
+// DetectionStatus   : PENDING | CONFIRMED | EDITED | DISCARDED
+// ApplianceType     : HVAC | REFRIGERATION | LAUNDRY | KITCHEN | ELECTRONICS
+//                   | LIGHTING | WATER_HEATING | OTHER
+// CarbonResultScope : SCAN | DAILY | WEEKLY | MONTHLY | ANNUAL | SIMULATION | BASELINE
+// TwinTier          : VERDANT | EMBER | AURORA | DRIFT | SUMMIT
+// SimulationStatus  : DRAFT | ACTIVE | ARCHIVED
+// GoalType          : WEEKLY | MONTHLY | ANNUAL | ONE_TIME
+// GoalStatus        : ACTIVE | COMPLETED | PAUSED | EXPIRED | FAILED
+// ConversationType  : COACH | NEGOTIATOR | INSIGHT | PARSER
+// MessageRole       : USER | ASSISTANT | SYSTEM | TOOL
+// NegotiationOutcome: PENDING | COMMITTED | DECLINED | DEFERRED
+// ----------------------------------------------------------------------------
+
+
+// ============================================================================
+// USER — the account owner; gravity center of the schema
+// ============================================================================
+model User {
+  id              String   @id @default(uuid())
+  email           String   @unique
+  emailVerified   DateTime?
+  name            String?
+  image           String?
+  hashedPassword  String?                          // credentials provider
+  plan            String   @default("FREE")        // FREE | PRO | TEAM
+
+  // Carbon context (collected during onboarding)
+  country         String?                          // ISO-3166-1 alpha-2
+  region          String?
+  city            String?
+  householdSize   Int      @default(1)
+  unitSystem      String   @default("METRIC")      // METRIC | IMPERIAL
+  currency        String   @default("USD")
+  baselineAnnualKg Float?                           // computed during onboarding
+
+  // Onboarding state
+  onboardingStep  Int      @default(0)
+  onboardingDone  Boolean  @default(false)
+
+  // Audit
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+  lastLoginAt     DateTime?
+
+  // Relations
+  accounts        Account[]
+  sessions        Session[]
+  scans           Scan[]
+  appliances      Appliance[]
+  carbonResults   CarbonResult[]
+  climateTwin     ClimateTwin?
+  simulations     Simulation[]
+  goals           Goal[]
+  recommendations Recommendation[]
+  aiConversations AIConversation[]
+  settings        Settings?
+
+  @@index([deletedAt])
+  @@index([plan])
+  @@map("users")
+}
+
+// ============================================================================
+// NEXTAUTH INFRASTRUCTURE (required by the auth layer; not in the 11 entities
+// but mandatory for the stack to function)
+// ============================================================================
+model Account {
+  id                String  @id @default(uuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @map("refresh_token")
+  access_token      String? @map("access_token")
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@index([userId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(uuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
+// ============================================================================
+// SCAN — one upload/capture/voice/text session submitted for AI parsing
+// ============================================================================
+model Scan {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type          String                         // PHOTO | VOICE | TEXT | RECEIPT | CSV
+  status        String   @default("PENDING")   // PENDING | PROCESSING | COMPLETED | FAILED | CANCELLED
+
+  // Input payload
+  inputText     String?                        // raw text or voice transcript
+  inputUrl      String?                        // transient blob URL for photo/receipt
+  inputMeta     Json?                          // { mime, size, duration, language, ... }
+
+  // Processing telemetry
+  startedAt     DateTime?
+  completedAt   DateTime?
+  durationMs    Int?
+  errorMessage  String?
+  aiModel       String?                        // e.g. "gemini-2.0-flash"
+  promptVersion String?                        // traceability for prompt audits
+
+  // Audit
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  detections    Detection[]
+  carbonResults CarbonResult[]
+
+  @@index([userId, createdAt])
+  @@index([status])
+  @@map("scans")
+}
+
+// ============================================================================
+// DETECTION — one item extracted from a scan, reviewable before commit
+// ============================================================================
+model Detection {
+  id            String   @id @default(uuid())
+  scanId        String
+  scan          Scan     @relation(fields: [scanId], references: [id], onDelete: Cascade)
+
+  label         String                         // e.g. "Burger"
+  categorySlug  String                         // "food.meat.burger"
+  amount        Float
+  unit          String                         // as-parsed: "kg" | "km" | "USD"
+
+  confidence    Float                          // 0..1
+  sourceSnippet String?                        // text/region the AI parsed from
+  aiMetadata    Json?                          // raw model output (audit trail)
+
+  status        String   @default("PENDING")   // PENDING | CONFIRMED | EDITED | DISCARDED
+
+  // Computed (denormalized for fast list rendering)
+  co2eKg        Float?
+
+  // Audit
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  @@index([scanId])
+  @@index([status])
+  @@map("detections")
+}
+
+// ============================================================================
+// APPLIANCE — user-owned appliances feeding the home-energy footprint
+// ============================================================================
+model Appliance {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name        String                         // "Living room AC"
+  type        String                         // HVAC | REFRIGERATION | ...
+  brand       String?
+  model       String?
+  watts       Float?                         // rated power
+  quantity    Int      @default(1)
+  hoursPerDay Float?
+  daysPerWeek Float?   @default(7)
+  region      String?                        // grid region for factor lookup
+
+  // Audit
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  deletedAt   DateTime?
+
+  carbonResults CarbonResult[]
+
+  @@index([userId, type])
+  @@map("appliances")
+}
+
+// ============================================================================
+// CARBON RESULT — computed footprint for a scope (scan/period/sim/baseline)
+// ============================================================================
+model CarbonResult {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  scope           String                         // SCAN|DAILY|WEEKLY|MONTHLY|ANNUAL|SIMULATION|BASELINE
+  totalKg         Float                          // total CO2e for this scope
+  unit            String   @default("kg")
+
+  breakdown       Json                           // [{ categorySlug, kg, share }]
+  periodStart     DateTime?
+  periodEnd       DateTime?
+
+  // Optional provenance links (nullable — a result may aggregate many sources)
+  scanId          String?
+  scan            Scan?        @relation(fields: [scanId], references: [id], onDelete: SetNull)
+  simulationId    String?
+  simulation      Simulation?  @relation(fields: [simulationId], references: [id], onDelete: SetNull)
+  applianceId     String?
+  appliance       Appliance?   @relation(fields: [applianceId], references: [id], onDelete: SetNull)
+
+  // Methodology transparency (Skeptic persona trust)
+  factorVersion   String?
+  methodologyRef  String?                        // "EPA-2024" | "DEFRA-2024" | "IPCC-AR6"
+
+  // Audit
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  @@index([userId, scope, periodStart])
+  @@index([scanId])
+  @@index([simulationId])
+  @@map("carbon_results")
+}
+
+// ============================================================================
+// CLIMATE TWIN — the user's personal carbon persona (1:1 with user)
+// ============================================================================
+model ClimateTwin {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name             String                         // "Verdant Maya"
+  tier             String                         // VERDANT|EMBER|AURORA|DRIFT|SUMMIT
+  avatarSeed       String                         // deterministic generative seed
+  personaText      String?                        // AI-written profile paragraph
+
+  composition      Json                           // {transport,food,home,shopping,digital,travel} kg
+  currentAnnualKg  Float
+  baselineAnnualKg Float
+  previousAnnualKg Float?
+
+  vsCountryAvgPct  Float?                         // -18 = 18% below country average
+  vsTargetPct      Float?                         // vs Paris-1.5-aligned target
+
+  evolution        Json?                          // [{ date, kg, tier }]
+
+  // Audit
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  deletedAt        DateTime?
+
+  @@map("climate_twins")
+}
+
+// ============================================================================
+// SIMULATION — a what-if scenario (stack of levers + projected impact)
+// ============================================================================
+model Simulation {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  name            String?
+  status          String   @default("DRAFT")      // DRAFT | ACTIVE | ARCHIVED
+
+  levers          Json                           // [{ slug, intensity, params }]
+  baselineKg      Float                          // snapshot of user baseline at creation
+  projectedKg     Float
+  reductionKg     Float
+  reductionPct    Float
+
+  forecast        Json?                          // [{ month, baselineKg, scenarioKg, ciLow, ciHigh }]
+
+  twinPreviewTier String?                        // projected Twin tier under scenario
+  twinPreviewKg   Float?
+
+  // Audit
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  deletedAt       DateTime?
+
+  carbonResults   CarbonResult[]
+
+  @@index([userId, status])
+  @@map("simulations")
+}
+
+// ============================================================================
+// RECOMMENDATION — an AI-suggested reduction lever
+// ============================================================================
+model Recommendation {
+  id              String    @id @default(uuid())
+  userId          String
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title           String
+  description     String?
+
+  categorySlug    String
+  potentialKg     Float                          // est. annual reduction
+  difficulty      String                         // EASY | MEDIUM | HARD
+  impact          String                         // LOW | MEDIUM | HIGH
+  status          String    @default("SUGGESTED")  // SUGGESTED | ACCEPTED | DISMISSED | COMPLETED
+  aiGenerated     Boolean   @default(true)
+
+  acceptedAt      DateTime?
+  completedAt     DateTime?
+
+  // Audit
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  deletedAt       DateTime?
+
+  @@index([userId, status])
+  @@map("recommendations")
+}
+
+// ============================================================================
+// GOAL — a reduction commitment (often AI-negotiated)
+// ============================================================================
+model Goal {
+  id               String   @id @default(uuid())
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title            String
+  description      String?
+
+  type             String                         // WEEKLY | MONTHLY | ANNUAL | ONE_TIME
+  status           String   @default("ACTIVE")    // ACTIVE|COMPLETED|PAUSED|EXPIRED|FAILED
+
+  targetKg         Float                          // reduction target
+  baselineKg       Float
+  currentKg        Float    @default(0)
+
+  startDate        DateTime
+  endDate          DateTime
+
+  // Provenance
+  simulationId     String?                        // created from a what-if scenario
+  negotiatedWithAi Boolean  @default(false)
+  aiReasoning      String?                        // AI's negotiation rationale
+
+  // Audit
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  deletedAt        DateTime?
+
+  progress         GoalProgress[]
+
+  @@index([userId, status])
+  @@index([userId, endDate])
+  @@map("goals")
+}
+
+// ============================================================================
+// GOAL PROGRESS — periodic snapshot of a goal's trajectory
+// ============================================================================
+model GoalProgress {
+  id           String   @id @default(uuid())
+  goalId       String
+  goal         Goal     @relation(fields: [goalId], references: [id], onDelete: Cascade)
+
+  periodStart  DateTime
+  periodEnd    DateTime
+  periodKg     Float                          // emissions during this period
+  reductionKg  Float                          // reduction vs baseline this period
+  cumulativeKg Float                          // cumulative reduction toward target
+  progressPct  Float                          // cumulative / target
+  onTrack      Boolean
+
+  // Audit
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  deletedAt    DateTime?
+
+  @@unique([goalId, periodStart])
+  @@index([goalId, periodEnd])
+  @@map("goal_progress")
+}
+
+// ============================================================================
+// AI CONVERSATION — a coach / negotiator / insight / parser thread
+// ============================================================================
+model AIConversation {
+  id            String   @id @default(uuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  type          String                         // COACH | NEGOTIATOR | INSIGHT | PARSER
+  title         String?
+
+  context       Json?                          // compact carbon passport passed to the model
+  messageCount  Int      @default(0)
+  tokenCount    Int      @default(0)
+  lastMessageAt DateTime?
+
+  // Negotiator outcome
+  outcome       String?                        // PENDING|COMMITTED|DECLINED|DEFERRED
+  goalId        String?                        // if the conversation produced a goal
+
+  // Audit
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  deletedAt     DateTime?
+
+  messages      AIMessage[]
+
+  @@index([userId, type, lastMessageAt])
+  @@map("ai_conversations")
+}
+
+// ============================================================================
+// AI MESSAGE — a single turn within a conversation
+// (Normalized out of AIConversations for queryable, paginated transcripts
+//  and per-turn token/tool auditing. A conversation without messages is
+//  meaningless, so this is the natural production decomposition.)
+// ============================================================================
+model AIMessage {
+  id             String   @id @default(uuid())
+  conversationId String
+  conversation   AIConversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
+
+  role           String                         // USER | ASSISTANT | SYSTEM | TOOL
+  content        String
+  tokensIn       Int      @default(0)
+  tokensOut      Int      @default(0)
+
+  // Function calling
+  toolName       String?
+  toolArgs       Json?
+  toolResult     Json?
+
+  // Traceability
+  model          String?
+  promptVersion  String?
+
+  // Audit
+  createdAt      DateTime @default(now())
+  deletedAt      DateTime?
+
+  @@index([conversationId, createdAt])
+  @@map("ai_messages")
+}
+
+// ============================================================================
+// SETTINGS — per-user preferences (1:1 with user)
+// ============================================================================
+model Settings {
+  id                   String   @id @default(uuid())
+  userId               String   @unique
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Display
+  theme                String   @default("SYSTEM")    // LIGHT | DARK | SYSTEM
+  reducedMotion        Boolean  @default(false)
+  plainLanguage        Boolean  @default(false)
+  highContrast         Boolean  @default(false)
+
+  // Notifications
+  emailDigest          String   @default("WEEKLY")    // OFF | WEEKLY | MONTHLY
+  pushEnabled          Boolean  @default(false)
+  insightNotifications Boolean  @default(true)
+  goalReminders        Boolean  @default(true)
+
+  // Privacy / AI
+  aiEnabled            Boolean  @default(true)
+  aiDailyBudget        Int      @default(20)
+  shareTwinPublic      Boolean  @default(false)
+
+  // Data
+  exportFormat         String   @default("csv")
+
+  // Audit
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+  deletedAt            DateTime?
+
+  @@map("settings")
+}

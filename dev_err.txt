@@ -1,0 +1,518 @@
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of C:\Users\ASUS\package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * C:\Users\ASUS\Downloads\workspace-ad993c2e-f094-464c-85f7-63ba1437be50\bun.lock
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/upload", label: ..., icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "Results", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/twin", label: ..., icon: {$$typeof: ..., render: ...}}
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: "What-If", icon: {$$typeof: ..., render: ...}}
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: "/goals", label: "Goals", icon: {$$typeof: ..., render: ...}}
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Only plain objects can be passed to Client Components from Server Components. Classes or other objects with methods are not supported.
+  {href: ..., label: ..., icon: {$$typeof: ..., render: ...}}
+                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function LayoutDashboard}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '1755157182'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ScanLine}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '990117150'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function ChartColumn}
+                          ^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3686807102'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function UsersRound}
+                          ^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '466202366'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function SlidersHorizontal}
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '871107518'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function MessageSquare}
+                          ^^^^^^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3884611454'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Target}
+                          ^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '3477163742'
+}
+⨯ Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server". Or maybe you meant to call this function rather than return it.
+  {$$typeof: ..., render: function Settings}
+                          ^^^^^^^^^^^^^^^^^
+    at stringify (<anonymous>) {
+  digest: '778762782'
+}
+⨯ Error: Element type is invalid: expected a string (for built-in components) or a class/function (for composite components) but got: object.
+    at ignore-listed frames {
+  digest: '4131655191'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
