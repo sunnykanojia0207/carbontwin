@@ -1,8 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
-  "buildCommand": "bun run db:generate && next build",
-  "installCommand": "bun install",
+  "buildCommand": "npx prisma generate && npx prisma db push && next build",
+  "installCommand": "npm install",
   "devCommand": "next dev",
   "crons": [
     {
