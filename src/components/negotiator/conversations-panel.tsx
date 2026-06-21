@@ -9,12 +9,13 @@ import { cn } from '@/lib/utils'
 // ============================================================================
 // ConversationsPanel — sidebar list of past negotiator sessions.
 //
-// Delete UX (simple & reliable):
-//   • Each row shows a trash icon button at the right — always visible,
-//     no hover required, works on touch/mobile.
-//   • Clicking trash shows a mini inline confirm (Confirm / Cancel) so
-//     users don't accidentally wipe a conversation.
-//   • Optimistic: item removed from list immediately on confirm.
+// Row layout (grid):
+//   [icon] [title+time — flex-1 min-w-0 truncate] [trash — shrink-0]
+//
+// Delete UX:
+//   • Trash icon always visible on the right — no hover required
+//   • Click trash → shows "Delete / ✕" inline confirm in place of the icon
+//   • Confirm → optimistic removal + API call
 // ============================================================================
 
 interface ConversationSummary {
@@ -88,7 +89,7 @@ export function ConversationsPanel({
         await fetch(`/api/negotiator/${id}`, { method: 'DELETE' })
         onDelete(id)
       } catch {
-        // already removed from UI, silently fail
+        // already removed from UI
       } finally {
         setDeletingId(null)
       }
@@ -126,7 +127,7 @@ export function ConversationsPanel({
             onClick={onNew}
             className="mb-1 flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
           >
-            <span className="flex size-6 items-center justify-center rounded-md border bg-background">
+            <span className="flex size-6 shrink-0 items-center justify-center rounded-md border bg-background">
               <Plus className="size-3.5" />
             </span>
             <span className="text-xs font-medium">New conversation</span>
@@ -166,67 +167,62 @@ export function ConversationsPanel({
                         <div
                           key={conv.id}
                           className={cn(
-                            'group flex w-full items-start gap-2 rounded-lg px-2.5 py-2 transition-colors',
+                            // grid: icon(fixed) | text(shrinks) | action(fixed)
+                            'grid w-full rounded-lg px-2 py-2 transition-colors',
+                            'grid-cols-[1.25rem_1fr_auto] items-center gap-2',
                             isActive
                               ? 'bg-sidebar-accent text-sidebar-accent-foreground'
                               : 'text-muted-foreground hover:bg-sidebar-accent/50 hover:text-foreground',
-                            isDeleting && 'opacity-40 pointer-events-none',
+                            isDeleting && 'pointer-events-none opacity-40',
                           )}
                         >
-                          {/* Clickable text area */}
+                          {/* Col 1 — icon */}
+                          <MessageSquare className="size-3.5 shrink-0 opacity-50" />
+
+                          {/* Col 2 — title + time, clicks to open */}
                           <button
                             onClick={() => { setConfirmingId(null); onSelect(conv.id) }}
-                            className="flex min-w-0 flex-1 items-start gap-2 text-left"
+                            className="min-w-0 text-left"
                           >
-                            <MessageSquare className="mt-0.5 size-3.5 shrink-0 opacity-50" />
-                            <div className="min-w-0 flex-1">
-                              <p className="truncate text-xs font-medium leading-snug">
-                                {conv.title || 'New conversation'}
-                              </p>
-                              <div className="mt-0.5 flex items-center gap-1">
-                                <Clock className="size-2.5 shrink-0 opacity-40" />
-                                <span className="text-[10px] leading-none opacity-50">
-                                  {timeAgo(conv.lastMessageAt)}
-                                </span>
-                              </div>
+                            <p className="truncate text-xs font-medium leading-snug">
+                              {conv.title || 'New conversation'}
+                            </p>
+                            <div className="mt-0.5 flex items-center gap-1">
+                              <Clock className="size-2.5 shrink-0 opacity-40" />
+                              <span className="text-[10px] leading-none opacity-50">
+                                {timeAgo(conv.lastMessageAt)}
+                              </span>
                             </div>
                           </button>
 
-                          {/* Right side — delete or confirm */}
-                          <div className="shrink-0">
-                            {isDeleting ? (
-                              <Loader2 className="size-4 animate-spin text-muted-foreground/40" />
-                            ) : isConfirming ? (
-                              /* Inline confirm */
-                              <div className="flex items-center gap-1">
-                                <button
-                                  onClick={() => handleDeleteConfirm(conv.id)}
-                                  className="rounded px-1.5 py-0.5 text-[10px] font-semibold text-destructive hover:bg-destructive/10 transition-colors"
-                                >
-                                  Delete
-                                </button>
-                                <button
-                                  onClick={() => setConfirmingId(null)}
-                                  className="rounded px-1.5 py-0.5 text-[10px] text-muted-foreground hover:text-foreground transition-colors"
-                                >
-                                  Cancel
-                                </button>
-                              </div>
-                            ) : (
-                              /* Trash button — always visible */
+                          {/* Col 3 — action (always visible, never overflows) */}
+                          {isDeleting ? (
+                            <Loader2 className="size-3.5 animate-spin text-muted-foreground/40" />
+                          ) : isConfirming ? (
+                            <div className="flex items-center gap-0.5">
                               <button
-                                onClick={(e) => { e.stopPropagation(); setConfirmingId(conv.id) }}
-                                title="Delete conversation"
-                                aria-label="Delete conversation"
-                                className={cn(
-                                  'flex size-6 items-center justify-center rounded-md transition-colors',
-                                  'text-muted-foreground/40 hover:bg-destructive/10 hover:text-destructive',
-                                )}
+                                onClick={() => handleDeleteConfirm(conv.id)}
+                                className="rounded px-1.5 py-1 text-[10px] font-semibold text-destructive hover:bg-destructive/10 transition-colors"
                               >
-                                <Trash2 className="size-3.5" />
+                                Delete
                               </button>
-                            )}
-                          </div>
+                              <button
+                                onClick={() => setConfirmingId(null)}
+                                className="rounded px-1 py-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                              >
+                                ✕
+                              </button>
+                            </div>
+                          ) : (
+                            <button
+                              onClick={(e) => { e.stopPropagation(); setConfirmingId(conv.id) }}
+                              title="Delete conversation"
+                              aria-label="Delete conversation"
+                              className="flex size-6 items-center justify-center rounded-md text-muted-foreground/40 hover:bg-destructive/10 hover:text-destructive transition-colors"
+                            >
+                              <Trash2 className="size-3.5" />
+                            </button>
+                          )}
                         </div>
                       )
                     })}
