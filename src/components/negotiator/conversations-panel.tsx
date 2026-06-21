@@ -20,9 +20,9 @@ import { cn } from '@/lib/utils'
 
 interface ConversationSummary {
   id: string
-  title: string
+  title: string | null
   messageCount: number
-  lastMessageAt: string
+  lastMessageAt: string | null
   createdAt: string
 }
 
@@ -35,8 +35,11 @@ interface ConversationsPanelProps {
   className?: string
 }
 
-function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime()
+function timeAgo(dateStr: string | null | undefined): string {
+  if (!dateStr) return ''
+  const date = new Date(dateStr)
+  if (isNaN(date.getTime())) return ''
+  const diff = Date.now() - date.getTime()
   const mins = Math.floor(diff / 60000)
   if (mins < 1) return 'just now'
   if (mins < 60) return `${mins}m ago`
@@ -44,7 +47,7 @@ function timeAgo(dateStr: string): string {
   if (hours < 24) return `${hours}h ago`
   const days = Math.floor(hours / 24)
   if (days < 7) return `${days}d ago`
-  return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
 export function ConversationsPanel({
@@ -108,7 +111,10 @@ export function ConversationsPanel({
       Today: [], Yesterday: [], 'This week': [], Earlier: [],
     }
     for (const c of conversations) {
-      const d = new Date(c.lastMessageAt)
+      const raw = c.lastMessageAt ?? c.createdAt
+      const d = raw ? new Date(raw) : null
+      // skip if invalid date
+      if (!d || isNaN(d.getTime())) { buckets['Earlier'].push(c); continue }
       if (d >= today) buckets['Today'].push(c)
       else if (d >= yesterday) buckets['Yesterday'].push(c)
       else if (d >= thisWeek) buckets['This week'].push(c)
@@ -190,7 +196,7 @@ export function ConversationsPanel({
                             <div className="mt-0.5 flex items-center gap-1">
                               <Clock className="size-2.5 shrink-0 opacity-40" />
                               <span className="text-[10px] leading-none opacity-50">
-                                {timeAgo(conv.lastMessageAt)}
+                              {timeAgo(conv.lastMessageAt ?? conv.createdAt)}
                               </span>
                             </div>
                           </button>
