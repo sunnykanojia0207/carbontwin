@@ -1,6 +1,6 @@
 'use client'
 
-import Link from 'next/link'
+import * as React from 'react'
 import { Menu } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
@@ -11,10 +11,15 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet'
 import { Logo } from '@/components/shared/logo'
+import { NavLink } from '@/components/dashboard/nav-link'
 
 // ============================================================================
-// MobileNav — hamburger-triggered sheet that mirrors the sidebar nav links.
-// Only visible on screens below the lg breakpoint.
+// MobileNav — hamburger sheet for screens below lg breakpoint.
+//
+// Fixes:
+//   • NavLink used for active highlighting (same as desktop sidebar)
+//   • Sheet closes automatically when a link is tapped (onClick handler)
+//   • Fixed height sheet: h-svh, flex column, user never sees overflow
 // ============================================================================
 
 export function MobileNav({
@@ -22,8 +27,10 @@ export function MobileNav({
 }: {
   nav: { href: string; label: string; icon: React.ReactNode }[]
 }) {
+  const [open, setOpen] = React.useState(false)
+
   return (
-    <Sheet>
+    <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
         <Button
           variant="ghost"
@@ -34,21 +41,25 @@ export function MobileNav({
           <Menu className="size-5" />
         </Button>
       </SheetTrigger>
-      <SheetContent side="left" className="w-60 p-0">
+
+      <SheetContent side="left" className="flex w-60 flex-col p-0">
         <SheetTitle className="sr-only">Navigation</SheetTitle>
-        <div className="flex h-16 items-center border-b px-6">
+
+        {/* Logo */}
+        <div className="flex h-16 shrink-0 items-center border-b px-6">
           <Logo href="/dashboard" />
         </div>
-        <nav className="flex-1 space-y-1 px-3 py-4">
+
+        {/* Nav — close sheet on tap */}
+        <nav className="flex-1 overflow-y-auto px-3 py-3 space-y-0.5">
           {nav.map(({ href, label, icon }) => (
-            <Link
+            <NavLink
               key={href}
               href={href}
-              className="text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors"
-            >
-              {icon}
-              {label}
-            </Link>
+              label={label}
+              icon={icon}
+              onClick={() => setOpen(false)}
+            />
           ))}
         </nav>
       </SheetContent>
