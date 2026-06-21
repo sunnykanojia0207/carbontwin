@@ -50,8 +50,8 @@ vi.mock('@/lib/ai/cache', () => ({
 // AI not configured so fallbacks serve their "not configured" messages
 vi.mock('@/lib/ai/env', () => ({
   AI_CONFIGURED: false,
-  GEMINI_TEXT_MODEL: 'gemini-2.0-flash',
-  GEMINI_VISION_MODEL: 'gemini-2.0-flash',
+  GEMINI_TEXT_MODEL: 'gemini-2.5-flash',
+  GEMINI_VISION_MODEL: 'gemini-2.5-flash',
   validateEnv: () => ({ ok: true, required: [], ai: [{ name: 'GEMINI_API_KEY', set: false, preview: '<not set>' }] }),
 }))
 

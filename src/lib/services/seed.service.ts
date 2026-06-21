@@ -159,7 +159,7 @@ export async function seedDemoData(): Promise<{ ok: boolean; error?: string }> {
         startedAt: scanDate,
         completedAt: new Date(scanDate.getTime() + 2000),
         durationMs: 2000,
-        aiModel: 'gemini-2.0-flash',
+        aiModel: 'gemini-2.5-flash',
         promptVersion: 'parse-v1',
       },
     })

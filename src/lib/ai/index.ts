@@ -178,7 +178,7 @@ export async function generateInsights(
   const key = cacheKey('insights', context)
   const cached = getCached<InsightsResult>(key)
   if (cached) {
-    return { ok: true, data: cached, cached: true, model: 'gemini-2.0-flash' }
+    return { ok: true, data: cached, cached: true, model: 'gemini-2.5-flash' }
   }
 
   // Rate limit
@@ -261,7 +261,7 @@ export async function generateTwinRecommendations(
   const key = cacheKey('twin-recommendations', context)
   const cached = getCached<TwinRecommendationsResult>(key)
   if (cached) {
-    return { ok: true, data: cached, cached: true, model: 'gemini-2.0-flash' }
+    return { ok: true, data: cached, cached: true, model: 'gemini-2.5-flash' }
   }
 
   const rl = checkRateLimit(userId, 'twin-recommendations')
@@ -484,7 +484,7 @@ export async function generateGoalSuggestions(
   const key = cacheKey('goal-suggestions', context)
   const cached = getCached<GoalSuggestion[]>(key)
   if (cached) {
-    return { ok: true, data: cached, cached: true, model: 'gemini-2.0-flash' }
+    return { ok: true, data: cached, cached: true, model: 'gemini-2.5-flash' }
   }
 
   const rl = checkRateLimit(userId, 'goal-suggestions')
@@ -585,7 +585,7 @@ export async function generateForecast(
   const key = cacheKey('forecast', context)
   const cached = getCached<ForecastResult>(key)
   if (cached) {
-    return { ok: true, data: cached, cached: true, model: 'gemini-2.0-flash' }
+    return { ok: true, data: cached, cached: true, model: 'gemini-2.5-flash' }
   }
 
   const rl = checkRateLimit(userId, 'insights') // reuse insights budget

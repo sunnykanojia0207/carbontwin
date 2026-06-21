@@ -1,0 +1,653 @@
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - navigation "Main navigation" [ref=e5]:
+        - link "CarbonTwin home" [ref=e6] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e7]:
+            - img [ref=e8]
+            - generic [ref=e13]: CarbonTwin
+        - generic [ref=e14]:
+          - link "Features" [ref=e15] [cursor=pointer]:
+            - /url: "#features"
+          - link "How it works" [ref=e16] [cursor=pointer]:
+            - /url: "#how"
+          - link "AI" [ref=e17] [cursor=pointer]:
+            - /url: "#ai"
+          - link "Technology" [ref=e18] [cursor=pointer]:
+            - /url: "#tech"
+          - link "FAQ" [ref=e19] [cursor=pointer]:
+            - /url: "#faq"
+        - generic [ref=e20]:
+          - button "Switch to dark mode" [ref=e21]:
+            - img
+          - link "Log in" [ref=e22] [cursor=pointer]:
+            - /url: /login
+          - link "Sign up" [ref=e23] [cursor=pointer]:
+            - /url: /register
+    - main [ref=e24]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e29]: AI-powered personal carbon intelligence
+          - heading "Your footprint, finally legible." [level=1] [ref=e32]:
+            - text: Your footprint,
+            - text: finally legible.
+          - paragraph [ref=e34]: CarbonTwin turns invisible daily emissions into a personal model you can read, predict, and negotiate with. Snap a receipt, meet your Climate Twin, and let AI find the reductions you'll actually keep.
+          - generic [ref=e36]:
+            - link "Meet your Climate Twin" [ref=e37] [cursor=pointer]:
+              - /url: /register
+              - text: Meet your Climate Twin
+              - img
+            - link "See how it works" [ref=e38] [cursor=pointer]:
+              - /url: "#how"
+          - paragraph [ref=e40]: Free to start. No card. Numbers backed by EPA, DEFRA & IPCC emission factors.
+        - generic [ref=e46]:
+          - generic [ref=e54]: carbontwin · live
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - paragraph [ref=e58]: This week
+                - paragraph [ref=e59]: "42.3"
+                - paragraph [ref=e60]: kg CO₂e
+                - generic [ref=e61]:
+                  - img [ref=e62]
+                  - generic [ref=e64]: 18% vs last week
+              - generic [ref=e65]:
+                - img [ref=e67]
+                - generic [ref=e70]:
+                  - generic [ref=e71]: 62%
+                  - generic [ref=e72]: of target
+              - generic [ref=e75]: on track
+            - generic [ref=e76]:
+              - generic [ref=e78]:
+                - generic [ref=e79]: Daily emissions
+                - generic [ref=e80]: last 12d
+              - generic [ref=e95]:
+                - img [ref=e97]
+                - generic [ref=e99]:
+                  - paragraph [ref=e100]: AI insight
+                  - paragraph [ref=e101]: Transport dropped 32% — like charging your phone 350 times.
+              - generic [ref=e102]:
+                - generic [ref=e104]: top sources
+                - generic [ref=e115]:
+                  - generic [ref=e116]:
+                    - text: Transport
+                    - generic [ref=e118]: "14.2"
+                  - generic [ref=e119]:
+                    - text: Food
+                    - generic [ref=e121]: "9.8"
+                  - generic [ref=e122]:
+                    - text: Home
+                    - generic [ref=e124]: "7.1"
+          - generic [ref=e125]:
+            - generic [ref=e126]:
+              - generic [ref=e127]: streak
+              - generic [ref=e128]:
+                - text: 12 days
+                - img [ref=e129]
+            - generic [ref=e131]:
+              - generic [ref=e132]: updated
+              - generic [ref=e133]: just now
+      - generic [ref=e135]:
+        - paragraph [ref=e137]: The problem
+        - heading "Carbon is the most important number in your life — and the least understood." [level=2] [ref=e139]
+        - generic [ref=e140]:
+          - generic [ref=e141]:
+            - text: "01"
+            - heading "It's invisible." [level=3] [ref=e142]
+            - paragraph [ref=e143]: Your phone, your lunch, your commute, your cloud storage — each silently emits. Nothing in your day tells you how much, or where it's concentrated.
+          - generic [ref=e144]:
+            - text: "02"
+            - heading "It's abstract." [level=3] [ref=e145]
+            - paragraph [ref=e146]: A number like 7.4 tonnes means nothing on its own. Without a relatable shape, it can't guide a single decision you make today.
+          - generic [ref=e147]:
+            - text: "03"
+            - heading "It feels hopeless." [level=3] [ref=e148]
+            - paragraph [ref=e149]: Even when you try, the advice is generic — "drive less, eat plants" — with no sense of what actually moves your number, or what's realistic for you.
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - paragraph [ref=e154]: The solution
+          - heading "One system that turns emissions into agency." [level=2] [ref=e156]
+          - paragraph [ref=e158]: Six capabilities that work as a loop — detect your real footprint, model the changes, negotiate commitments you'll keep, and watch the forecast bend.
+        - generic [ref=e159]:
+          - generic [ref=e161]:
+            - img [ref=e163]
+            - heading "Invisible Carbon Detector" [level=3] [ref=e168]
+            - paragraph [ref=e169]: AI extracts activities from photos, voice, or text.
+          - generic [ref=e171]:
+            - img [ref=e173]
+            - heading "Digital Climate Twin" [level=3] [ref=e177]
+            - paragraph [ref=e178]: A personal carbon persona that evolves with you.
+          - generic [ref=e180]:
+            - img [ref=e182]
+            - heading "What-If Simulator" [level=3] [ref=e183]
+            - paragraph [ref=e184]: Model lifestyle changes before committing.
+          - generic [ref=e186]:
+            - img [ref=e188]
+            - heading "AI Carbon Negotiator" [level=3] [ref=e193]
+            - paragraph [ref=e194]: Find reductions you will actually keep.
+          - generic [ref=e196]:
+            - img [ref=e198]
+            - heading "Sustainability Goals" [level=3] [ref=e202]
+            - paragraph [ref=e203]: Tiered commitments with streaks, not guilt.
+          - generic [ref=e205]:
+            - img [ref=e207]
+            - heading "Carbon Forecasting" [level=3] [ref=e210]
+            - paragraph [ref=e211]: See your trajectory months ahead.
+        - paragraph [ref=e213]: Each capability is strong alone — together, they form a feedback loop that compounds. Your Dashboard is where it all converges.
+      - generic [ref=e215]:
+        - generic [ref=e216]:
+          - paragraph [ref=e218]: Feature highlights
+          - heading "Six capabilities, one Dashboard." [level=2] [ref=e220]
+          - paragraph [ref=e222]: Each is built to make the next one smarter — detect more, and the Twin sharpens; sharpen the Twin, and the simulator finds better levers; commit to a lever, and the forecast bends. Your Dashboard ties the loop together.
+        - generic [ref=e223]:
+          - generic [ref=e224]:
+            - generic [ref=e227]:
+              - generic [ref=e235]: carbon detector · live
+              - generic [ref=e236]:
+                - generic [ref=e237]:
+                  - img [ref=e238]
+                  - text: Photo scan
+                - generic [ref=e241]:
+                  - img [ref=e242]
+                  - text: Voice note
+                - generic [ref=e245]:
+                  - img [ref=e246]
+                  - text: Text entry
+              - generic [ref=e248]:
+                - img [ref=e250]
+                - paragraph [ref=e253]: AI extracting carbon activities…
+                - generic [ref=e255]: done
+              - generic [ref=e256]:
+                - generic [ref=e258]: Detected · 3 activities
+                - generic [ref=e259]:
+                  - img [ref=e260]
+                  - generic [ref=e263]:
+                    - generic [ref=e264]:
+                      - generic [ref=e265]: Burger
+                      - generic [ref=e266]: 5.2 kg
+                    - generic [ref=e269]: 94%
+                - generic [ref=e270]:
+                  - img [ref=e271]
+                  - generic [ref=e274]:
+                    - generic [ref=e275]:
+                      - generic [ref=e276]: Train · 12 km
+                      - generic [ref=e277]: 0.4 kg
+                    - generic [ref=e280]: 91%
+                - generic [ref=e281]:
+                  - img [ref=e282]
+                  - generic [ref=e285]:
+                    - generic [ref=e286]:
+                      - generic [ref=e287]: T-shirt · cotton
+                      - generic [ref=e288]: 3.1 kg
+                    - generic [ref=e291]: 88%
+              - generic [ref=e292]:
+                - generic [ref=e293]: Review before saving
+                - generic [ref=e294]: Confirm all →
+            - generic [ref=e295]:
+              - paragraph [ref=e297]: Invisible Carbon Detector
+              - heading "Log a week in a sentence. Or a photo." [level=3] [ref=e299]
+              - paragraph [ref=e301]: Point your camera at a receipt, describe your day in plain language, or paste a list. CarbonTwin's AI extracts the activities, looks up regional emission factors, and computes the carbon — no spreadsheet, no manual entry, no guesswork.
+              - list [ref=e303]:
+                - listitem [ref=e304]:
+                  - img [ref=e306]
+                  - generic [ref=e308]: Photo · voice · text · receipt · CSV inputs
+                - listitem [ref=e309]:
+                  - img [ref=e311]
+                  - generic [ref=e313]: Function-calling AI with confidence scores
+                - listitem [ref=e314]:
+                  - img [ref=e316]
+                  - generic [ref=e318]: Review-and-confirm gate before anything counts
+          - generic [ref=e319]:
+            - generic [ref=e321]:
+              - generic [ref=e332]:
+                - paragraph [ref=e333]: Verdant
+                - paragraph [ref=e334]: 7.4t
+                - paragraph [ref=e335]: CO₂e / yr
+              - generic [ref=e336]:
+                - paragraph [ref=e337]: composition
+                - generic [ref=e338]:
+                  - generic [ref=e340]: Transport
+                  - generic [ref=e341]: 34%
+                - generic [ref=e342]:
+                  - generic [ref=e344]: Food
+                  - generic [ref=e345]: 24%
+                - generic [ref=e346]:
+                  - generic [ref=e348]: Home
+                  - generic [ref=e349]: 18%
+                - generic [ref=e350]:
+                  - generic [ref=e352]: Shopping
+                  - generic [ref=e353]: 12%
+              - generic [ref=e354]:
+                - paragraph [ref=e355]: vs country avg
+                - paragraph [ref=e356]: ↓ 18% below
+            - generic [ref=e357]:
+              - paragraph [ref=e359]: Digital Climate Twin
+              - heading "A persona for your footprint — not a number." [level=3] [ref=e361]
+              - paragraph [ref=e363]: Your Climate Twin is a generative model of your carbon profile. It takes a shape that reflects your composition, shifts color as your footprint grows or shrinks, and writes itself a plain-language persona you can actually relate to.
+              - list [ref=e365]:
+                - listitem [ref=e366]:
+                  - img [ref=e368]
+                  - generic [ref=e370]: Composition radar across 6 categories
+                - listitem [ref=e371]:
+                  - img [ref=e373]
+                  - generic [ref=e375]: Tiered avatar that evolves month over month
+                - listitem [ref=e376]:
+                  - img [ref=e378]
+                  - generic [ref=e380]: Compare to your country average and the Paris target
+          - generic [ref=e381]:
+            - generic [ref=e384]:
+              - generic [ref=e385]:
+                - generic [ref=e386]:
+                  - paragraph [ref=e387]: Scenario
+                  - paragraph [ref=e388]: Cut meat by 50%
+                - generic [ref=e389]:
+                  - paragraph [ref=e390]: saves
+                  - paragraph [ref=e391]: 312 kg/yr
+              - generic [ref=e392]:
+                - img [ref=e393]
+                - generic [ref=e399]:
+                  - generic [ref=e402]: Baseline
+                  - generic [ref=e405]: Scenario
+              - generic [ref=e407]:
+                - generic [ref=e408]: 0%
+                - generic [ref=e409]: 0% reduction
+                - generic [ref=e410]: 100%
+            - generic [ref=e413]:
+              - paragraph [ref=e415]: What-If Simulator
+              - heading "See the impact before you commit." [level=3] [ref=e417]
+              - paragraph [ref=e419]: Slide a lever — cut a flight, switch to plant-based days, go secondhand — and watch your projected footprint, your confidence band, and your Climate Twin all re-render live. Curiosity becomes a decision.
+              - list [ref=e421]:
+                - listitem [ref=e422]:
+                  - img [ref=e424]
+                  - generic [ref=e426]: Sliders, not binary toggles — partial commitments welcome
+                - listitem [ref=e427]:
+                  - img [ref=e429]
+                  - generic [ref=e431]: 12-month forecast with confidence intervals
+                - listitem [ref=e432]:
+                  - img [ref=e434]
+                  - generic [ref=e436]: Real-world translators (trees, flights, phone charges)
+          - generic [ref=e437]:
+            - generic [ref=e440]:
+              - generic [ref=e441]:
+                - generic [ref=e445]:
+                  - paragraph [ref=e446]: AI Negotiator
+                  - paragraph [ref=e447]: ● finding your best lever
+                - generic [ref=e448]: 3 turns
+              - generic [ref=e449]:
+                - generic [ref=e451]: You fly short-haul ~6×/yr. Cutting 2 to rail saves 480kg. Doable, or too much?
+                - generic [ref=e453]: Maybe 1 flight. Travel is non-negotiable right now.
+                - generic [ref=e455]: Fair — 1 flight to rail = ~240kg/yr. Want me to lock that in as a goal?
+              - generic [ref=e456]:
+                - generic [ref=e457]:
+                  - generic [ref=e458]:
+                    - paragraph [ref=e459]: proposed commitment
+                    - paragraph [ref=e460]: 1 short-haul flight → rail / year
+                  - generic [ref=e461]: −240 kg
+                - generic [ref=e462]:
+                  - generic [ref=e463]: Lock in
+                  - generic [ref=e464]: Adjust
+            - generic [ref=e465]:
+              - paragraph [ref=e467]: AI Carbon Negotiator
+              - heading "A friend who bargains for ambition you can keep." [level=3] [ref=e469]
+              - paragraph [ref=e471]: The negotiator studies your data, proposes a lever tuned to you, and lets you counter. Never an ultimatum, always a range. It converges on a concrete commitment in under three turns — then turns it into a goal.
+              - list [ref=e473]:
+                - listitem [ref=e474]:
+                  - img [ref=e476]
+                  - generic [ref=e478]: Proposes levers ranked by your impact-to-effort ratio
+                - listitem [ref=e479]:
+                  - img [ref=e481]
+                  - generic [ref=e483]: Accept, counter, or decline — your call
+                - listitem [ref=e484]:
+                  - img [ref=e486]
+                  - generic [ref=e488]: Auto-creates a structured goal when you commit
+          - generic [ref=e489]:
+            - generic [ref=e492]:
+              - generic [ref=e493]:
+                - generic [ref=e494]:
+                  - paragraph [ref=e495]: Active goals
+                  - paragraph [ref=e496]: 3 commitments in progress
+                - generic [ref=e497]:
+                  - img [ref=e498]
+                  - generic [ref=e500]: 12-day streak
+              - generic [ref=e501]:
+                - generic [ref=e502]:
+                  - generic [ref=e503]:
+                    - img [ref=e504]
+                    - generic [ref=e508]: 78%
+                  - paragraph [ref=e509]: This week
+                  - paragraph [ref=e510]: 12.4 / 16kg
+                - generic [ref=e511]:
+                  - generic [ref=e512]:
+                    - img [ref=e513]
+                    - generic [ref=e517]: 52%
+                  - paragraph [ref=e518]: This month
+                  - paragraph [ref=e519]: 38 / 72kg
+                - generic [ref=e520]:
+                  - generic [ref=e521]:
+                    - img [ref=e522]
+                    - generic [ref=e526]: 34%
+                  - paragraph [ref=e527]: This year
+                  - paragraph [ref=e528]: 620 / 1.8t
+              - generic [ref=e531]: Annual goal is 12% behind — adjust target or extend timeline?
+            - generic [ref=e532]:
+              - paragraph [ref=e534]: Sustainability Goals
+              - heading "Commitments that recover, never fail." [level=3] [ref=e536]
+              - paragraph [ref=e538]: Tiered goals — weekly, monthly, annual — with progress rings and a logging streak. Behind pace shows amber, never red. Most goals miss the first time; CarbonTwin offers to adjust the target or extend the timeline instead of marking you a failure.
+              - list [ref=e540]:
+                - listitem [ref=e541]:
+                  - img [ref=e543]
+                  - generic [ref=e545]: Weekly / monthly / annual / one-time goals
+                - listitem [ref=e546]:
+                  - img [ref=e548]
+                  - generic [ref=e550]: Streaks and achievements, not leaderboards
+                - listitem [ref=e551]:
+                  - img [ref=e553]
+                  - generic [ref=e555]: "Graceful recovery: retry at 80% after a miss"
+          - generic [ref=e556]:
+            - generic [ref=e559]:
+              - generic [ref=e560]:
+                - generic [ref=e561]:
+                  - paragraph [ref=e562]: 12-month forecast
+                  - paragraph [ref=e563]: "Projected: 29 kg/week by Dec"
+                - generic [ref=e564]:
+                  - paragraph [ref=e565]: confidence
+                  - paragraph [ref=e566]: 87%
+              - generic [ref=e567]:
+                - img [ref=e568]
+                - generic [ref=e573]:
+                  - generic [ref=e576]: History
+                  - generic [ref=e579]: Forecast
+                  - generic [ref=e582]: Target
+                - generic [ref=e583]: now
+            - generic [ref=e584]:
+              - paragraph [ref=e586]: Carbon Forecasting
+              - heading "See your trajectory months ahead." [level=3] [ref=e588]
+              - paragraph [ref=e590]: A lightweight model projects your footprint 12 months out using your recent history, with a confidence band and a Paris-aligned target line. You see where you're headed early enough to change it.
+              - list [ref=e592]:
+                - listitem [ref=e593]:
+                  - img [ref=e595]
+                  - generic [ref=e597]: Exponential smoothing on rolling history
+                - listitem [ref=e598]:
+                  - img [ref=e600]
+                  - generic [ref=e602]: Confidence band widens honestly with uncertainty
+                - listitem [ref=e603]:
+                  - img [ref=e605]
+                  - generic [ref=e607]: Target line calibrated to a 1.5°C-aligned path
+      - generic [ref=e609]:
+        - generic [ref=e610]:
+          - paragraph [ref=e612]: How it works
+          - heading "From curious to committed in four moves." [level=2] [ref=e614]
+          - paragraph [ref=e616]: No onboarding marathon. No data-science degree. The first value lands in under five minutes.
+        - generic [ref=e619]:
+          - generic [ref=e622]:
+            - generic [ref=e623]:
+              - generic [ref=e624]: "01"
+              - generic [ref=e625]:
+                - heading "Meet your Twin" [level=3] [ref=e626]
+                - paragraph [ref=e627]: ~60 seconds
+            - paragraph [ref=e628]: A short wizard estimates your baseline footprint from your location, household, transport, and diet — then forms your Climate Twin on the spot. Skippable; we refine from real data as you log.
+          - generic [ref=e631]:
+            - generic [ref=e632]:
+              - generic [ref=e633]: "02"
+              - generic [ref=e634]:
+                - heading "Log your life" [level=3] [ref=e635]
+                - paragraph [ref=e636]: a few seconds, a few times a week
+            - paragraph [ref=e637]: Snap a receipt, speak a sentence, paste a list. The Invisible Carbon Detector parses it, attaches confidence scores, and shows you a review screen before anything hits your log.
+          - generic [ref=e640]:
+            - generic [ref=e641]:
+              - generic [ref=e642]: "03"
+              - generic [ref=e643]:
+                - heading "Explore your Dashboard" [level=3] [ref=e644]
+                - paragraph [ref=e645]: daily check-in
+            - paragraph [ref=e646]: Every scan, every goal, every simulated lever converges on your Dashboard. Your Twin evolves, your forecast updates, and weekly insights surface the one lever worth pulling next — all in one place.
+          - generic [ref=e649]:
+            - generic [ref=e650]:
+              - generic [ref=e651]: "04"
+              - generic [ref=e652]:
+                - heading "Reduce with help" [level=3] [ref=e653]
+                - paragraph [ref=e654]: ongoing
+            - paragraph [ref=e655]: Run what-if scenarios on your real data, negotiate a commitment with the AI, set goals that recover after a miss, and watch your forecast bend. Your Twin evolves, your streak grows, and the loop tightens.
+      - generic [ref=e657]:
+        - generic [ref=e658]:
+          - paragraph [ref=e660]: AI, done honestly
+          - heading "AI that explains itself — and stays auditable." [level=2] [ref=e662]
+          - paragraph [ref=e664]: Large-language-model intelligence for the fuzzy parts (parsing, narrative, negotiation). Deterministic, factor-based math for the parts that have to be right.
+        - generic [ref=e665]:
+          - generic [ref=e668]:
+            - img [ref=e670]
+            - generic [ref=e672]:
+              - heading "Natural-language logging" [level=3] [ref=e673]
+              - paragraph [ref=e674]: Describe your day in a sentence. Function-calling extracts structured activities with confidence scores you can audit.
+          - generic [ref=e677]:
+            - img [ref=e679]
+            - generic [ref=e689]:
+              - heading "Negotiated commitments" [level=3] [ref=e690]
+              - paragraph [ref=e691]: A conversational agent bargains between ambition and feasibility, converging on a goal you'll actually keep in under three turns.
+          - generic [ref=e694]:
+            - img [ref=e696]
+            - generic [ref=e698]:
+              - heading "Weekly insight narratives" [level=3] [ref=e699]
+              - paragraph [ref=e700]: Instead of dumping a chart, the AI writes a two-sentence story of your week — the trend, the cause, and the one lever worth pulling.
+          - generic [ref=e703]:
+            - img [ref=e705]
+            - generic [ref=e708]:
+              - heading "Deterministic where it matters" [level=3] [ref=e709]
+              - paragraph [ref=e710]: Every kilogram is computed by audited emission factors. The AI explains and recommends; the math decides. Never the other way around.
+        - generic [ref=e712]:
+          - generic [ref=e713]:
+            - img [ref=e714]
+            - generic [ref=e717]:
+              - paragraph [ref=e718]: Audited factors
+              - paragraph [ref=e719]: EPA, DEFRA, and IPCC emission factors, each traceable to its source and version.
+          - generic [ref=e720]:
+            - img [ref=e721]
+            - generic [ref=e725]:
+              - paragraph [ref=e726]: Versioned prompts
+              - paragraph [ref=e727]: Every AI output is stamped with a prompt version, so changes are reviewable and reversible.
+          - generic [ref=e728]:
+            - img [ref=e729]
+            - generic [ref=e732]:
+              - paragraph [ref=e733]: Model-transparent
+              - paragraph [ref=e734]: The model family is disclosed on every AI surface. You can opt out of AI entirely and still use the product.
+      - generic [ref=e736]:
+        - generic [ref=e737]:
+          - paragraph [ref=e739]: Built on
+          - heading "A stack chosen for longevity, not novelty." [level=2] [ref=e741]
+          - paragraph [ref=e743]: Boring, proven layers where it counts. Modern primitives where they earn their place. Nothing you'd be embarrassed to inherit in 2027.
+        - generic [ref=e744]:
+          - generic [ref=e746]:
+            - generic [ref=e747]:
+              - heading "Frontend" [level=3] [ref=e748]
+              - generic [ref=e749]: layer
+            - list [ref=e750]:
+              - listitem [ref=e751]:
+                - generic [ref=e753]: Next.js 16 · App Router
+              - listitem [ref=e754]:
+                - generic [ref=e756]: TypeScript
+              - listitem [ref=e757]:
+                - generic [ref=e759]: Tailwind CSS 4
+              - listitem [ref=e760]:
+                - generic [ref=e762]: shadcn/ui
+              - listitem [ref=e763]:
+                - generic [ref=e765]: Recharts
+              - listitem [ref=e766]:
+                - generic [ref=e768]: Framer Motion
+            - paragraph [ref=e769]: Server Components by default; client islands only where interactivity demands.
+          - generic [ref=e771]:
+            - generic [ref=e772]:
+              - heading "Backend" [level=3] [ref=e773]
+              - generic [ref=e774]: layer
+            - list [ref=e775]:
+              - listitem [ref=e776]:
+                - generic [ref=e778]: Route Handlers
+              - listitem [ref=e779]:
+                - generic [ref=e781]: Server Actions
+              - listitem [ref=e782]:
+                - generic [ref=e784]: Zod validation
+              - listitem [ref=e785]:
+                - generic [ref=e787]: Edge middleware
+            - paragraph [ref=e788]: Mutations via progressive-enhancement actions; AI via streaming route handlers.
+          - generic [ref=e790]:
+            - generic [ref=e791]:
+              - heading "Data" [level=3] [ref=e792]
+              - generic [ref=e793]: layer
+            - list [ref=e794]:
+              - listitem [ref=e795]:
+                - generic [ref=e797]: PostgreSQL
+              - listitem [ref=e798]:
+                - generic [ref=e800]: Prisma ORM
+              - listitem [ref=e801]:
+                - generic [ref=e803]: Soft-delete + audit fields
+              - listitem [ref=e804]:
+                - generic [ref=e806]: UUID primary keys
+            - paragraph [ref=e807]: Schema portable to SQLite for dev; identical file deploys to Postgres on Vercel.
+          - generic [ref=e809]:
+            - generic [ref=e810]:
+              - heading "AI" [level=3] [ref=e811]
+              - generic [ref=e812]: layer
+            - list [ref=e813]:
+              - listitem [ref=e814]:
+                - generic [ref=e816]: Gemini API
+              - listitem [ref=e817]:
+                - generic [ref=e819]: Function calling
+              - listitem [ref=e820]:
+                - generic [ref=e822]: Structured JSON output
+              - listitem [ref=e823]:
+                - generic [ref=e825]: Prompt versioning
+            - paragraph [ref=e826]: Deterministic math layer for emissions; AI annotates, explains, and recommends.
+          - generic [ref=e828]:
+            - generic [ref=e829]:
+              - heading "Auth" [level=3] [ref=e830]
+              - generic [ref=e831]: layer
+            - list [ref=e832]:
+              - listitem [ref=e833]:
+                - generic [ref=e835]: NextAuth / Auth.js
+              - listitem [ref=e836]:
+                - generic [ref=e838]: Credentials + Google OAuth
+              - listitem [ref=e839]:
+                - generic [ref=e841]: JWT sessions
+              - listitem [ref=e842]:
+                - generic [ref=e844]: Edge-gated routes
+            - paragraph [ref=e845]: Soft-deleted users blocked from re-auth; anti-enumeration on every flow.
+          - generic [ref=e847]:
+            - generic [ref=e848]:
+              - heading "Deploy" [level=3] [ref=e849]
+              - generic [ref=e850]: layer
+            - list [ref=e851]:
+              - listitem [ref=e852]:
+                - generic [ref=e854]: Vercel
+              - listitem [ref=e855]:
+                - generic [ref=e857]: Edge + Node runtimes
+              - listitem [ref=e858]:
+                - generic [ref=e860]: Preview DB branches
+              - listitem [ref=e861]:
+                - generic [ref=e863]: Cron for rollups
+            - paragraph [ref=e864]: No Docker. No long-running processes. Serverless-native end to end.
+        - paragraph [ref=e866]: Open schema, open methodology, your data exportable anytime.
+      - generic [ref=e868]:
+        - generic [ref=e869]:
+          - paragraph [ref=e871]: Questions
+          - heading "The things people actually ask." [level=2] [ref=e873]
+        - generic [ref=e874]:
+          - generic [ref=e876]:
+            - button "How does CarbonTwin know my carbon footprint is accurate?" [expanded] [ref=e877]:
+              - generic [ref=e878]: How does CarbonTwin know my carbon footprint is accurate?
+              - img [ref=e880]
+            - paragraph [ref=e883]: Every kilogram of CO₂e is computed by a deterministic emission-factor lookup — never by the AI. We source factors from the EPA (US), DEFRA (UK), and IPCC (global), each tagged with its version and region. The AI only parses your input, writes narratives, and recommends levers. The math is auditable and the same for everyone in your region.
+          - generic [ref=e885]:
+            - button "What does the Invisible Carbon Detector actually do?" [ref=e886]:
+              - generic [ref=e887]: What does the Invisible Carbon Detector actually do?
+              - img [ref=e889]
+            - paragraph [ref=e890]: You give it a photo (a receipt, a meal, a utility bill), a voice clip, or a sentence ("flew LHR→JFK economy, ate a burger"). The AI uses function calling to extract structured activities — category, amount, unit — with a confidence score. You see a review screen and confirm before anything is added to your log. The original image is discarded after parsing.
+          - generic [ref=e892]:
+            - button "Is my Climate Twin just a vanity avatar?" [ref=e893]:
+              - generic [ref=e894]: Is my Climate Twin just a vanity avatar?
+              - img [ref=e896]
+            - paragraph [ref=e897]: No — it's a real model. Its shape is your composition across six categories (transport, food, home, shopping, digital, travel). Its tier and color shift as your footprint changes. Its persona text is AI-written from your actual stats. It exists to make a 7.4-tonne number legible and to give you something to nudge, not to gamify.
+          - generic [ref=e899]:
+            - button "How is the AI Negotiator different from a chatbot?" [ref=e900]:
+              - generic [ref=e901]: How is the AI Negotiator different from a chatbot?
+              - img [ref=e903]
+            - paragraph [ref=e904]: "It has a job: converge on one concrete, realistic commitment in under three turns. It proposes a lever ranked by your impact-to-effort ratio, you accept or counter, and when you agree it creates a structured goal automatically. It never gives ultimatums, never moralizes, and always offers a range rather than a binary."
+          - generic [ref=e906]:
+            - button "Do I need to give up my lifestyle to use this?" [ref=e907]:
+              - generic [ref=e908]: Do I need to give up my lifestyle to use this?
+              - img [ref=e910]
+            - paragraph [ref=e911]: No. The whole point of the simulator and negotiator is finding reductions that fit your life. Cut one flight, not all travel. Plant-based two days, not vegan forever. Partial commitments are first-class — sliders, not toggles. The product is designed for people who want to do something, not everything.
+          - generic [ref=e913]:
+            - button "What happens to my data? Can I delete it?" [ref=e914]:
+              - generic [ref=e915]: What happens to my data? Can I delete it?
+              - img [ref=e917]
+            - paragraph [ref=e918]: Your data is yours. Export it as CSV or PDF anytime from Settings. Delete your account and everything cascades — full personal-data erasure in one transaction, no retention period. Images used for detection are processed and discarded; we don't store your photos. You can opt out of AI features entirely and the product still works (deterministically).
+          - generic [ref=e920]:
+            - button "Which AI model does it use, and can I trust it?" [ref=e921]:
+              - generic [ref=e922]: Which AI model does it use, and can I trust it?
+              - img [ref=e924]
+            - paragraph [ref=e925]: We use Google Gemini for natural-language parsing, insights, and the negotiator. The specific model is disclosed on every AI surface, and every output is stamped with a prompt version for auditability. AI output that becomes data always passes through a Zod schema first; malformed output is retried once, then falls back to a deterministic default. The AI never decides your carbon math.
+          - generic [ref=e927]:
+            - button "Is it free?" [ref=e928]:
+              - generic [ref=e929]: Is it free?
+              - img [ref=e931]
+            - paragraph [ref=e932]: A generous free tier covers personal use indefinitely — logging, your Climate Twin, the simulator, weekly insights, and a daily AI budget. Pro adds higher AI limits, advanced forecasting, and PDF reports. No card required to start, and the free tier is not a trial — it's a real product.
+      - generic [ref=e936]:
+        - heading "Your footprint on one Dashboard." [level=2] [ref=e937]
+        - paragraph [ref=e938]: Your footprint is already happening. CarbonTwin makes it something you can read, predict, and shape — in the time it takes to make coffee.
+        - generic [ref=e939]:
+          - link "Create your Climate Twin" [ref=e940] [cursor=pointer]:
+            - /url: /register
+            - text: Create your Climate Twin
+            - img
+          - link "I already have an account" [ref=e941] [cursor=pointer]:
+            - /url: /login
+        - paragraph [ref=e942]: Free to start · No credit card · Delete your data anytime
+    - contentinfo [ref=e943]:
+      - generic [ref=e944]:
+        - generic [ref=e945]:
+          - generic [ref=e946]:
+            - link "CarbonTwin home" [ref=e947] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e948]:
+                - img [ref=e949]
+                - generic [ref=e954]: CarbonTwin
+            - paragraph [ref=e955]: Understand your footprint. Decide what to change. AI-powered carbon intelligence for individuals.
+          - generic [ref=e956]:
+            - paragraph [ref=e957]: Product
+            - list [ref=e958]:
+              - listitem [ref=e959]:
+                - link "Features" [ref=e960] [cursor=pointer]:
+                  - /url: "#features"
+              - listitem [ref=e961]:
+                - link "How it works" [ref=e962] [cursor=pointer]:
+                  - /url: "#how"
+              - listitem [ref=e963]:
+                - link "AI approach" [ref=e964] [cursor=pointer]:
+                  - /url: "#ai"
+              - listitem [ref=e965]:
+                - link "FAQ" [ref=e966] [cursor=pointer]:
+                  - /url: "#faq"
+          - generic [ref=e967]:
+            - paragraph [ref=e968]: Account
+            - list [ref=e969]:
+              - listitem [ref=e970]:
+                - link "Log in" [ref=e971] [cursor=pointer]:
+                  - /url: /login
+              - listitem [ref=e972]:
+                - link "Sign up" [ref=e973] [cursor=pointer]:
+                  - /url: /register
+              - listitem [ref=e974]:
+                - link "Reset password" [ref=e975] [cursor=pointer]:
+                  - /url: /forgot-password
+          - generic [ref=e976]:
+            - paragraph [ref=e977]: Methodology
+            - list [ref=e978]:
+              - listitem [ref=e979]: EPA emission factors
+              - listitem [ref=e980]: DEFRA emission factors
+              - listitem [ref=e981]: IPCC AR6 guidelines
+              - listitem [ref=e982]: Paris 1.5°C alignment
+        - generic [ref=e983]:
+          - paragraph [ref=e984]: © 2026 CarbonTwin. Built for individuals who want to do something, not everything.
+          - paragraph [ref=e985]: Privacy-first · Your data is yours
+  - region "Notifications alt+T"

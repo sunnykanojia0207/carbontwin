@@ -68,12 +68,12 @@ export function validateEnv(): {
 /**
  * The Gemini model identifier to use for text tasks.
  */
-export const GEMINI_TEXT_MODEL = 'gemini-2.0-flash' as const
+export const GEMINI_TEXT_MODEL = 'gemini-2.5-flash' as const
 
 /**
  * The Gemini model identifier for vision tasks (image understanding).
  */
-export const GEMINI_VISION_MODEL = 'gemini-2.0-flash' as const
+export const GEMINI_VISION_MODEL = 'gemini-2.5-flash' as const
 
 /**
  * Whether the AI layer is configured (GEMINI_API_KEY is set).

@@ -39,7 +39,7 @@ function buildScan(overrides: {
     id: 'scan-1',
     status: 'COMPLETED',
     createdAt: new Date('2026-06-15T10:00:00Z'),
-    aiModel: 'gemini-2.0-flash',
+    aiModel: 'gemini-2.5-flash',
     promptVersion: 'v2',
     inputMeta: { roomType: 'Living Room', summary: '5 appliances detected' },
     detections: [],
@@ -117,7 +117,7 @@ describe('getResultsData', () => {
     expect(result.scan!.id).toBe('scan-1')
     expect(result.scan!.roomType).toBe('Living Room')
     expect(result.scan!.summary).toBe('5 appliances detected')
-    expect(result.scan!.aiModel).toBe('gemini-2.0-flash')
+    expect(result.scan!.aiModel).toBe('gemini-2.5-flash')
 
     // ── Appliances ──
     expect(result.appliances).toHaveLength(3)
