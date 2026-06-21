@@ -99,14 +99,10 @@ export function NegotiatorClient({
 
   const deleteConversation = React.useCallback(
     async (id: string) => {
-      try {
-        const res = await fetch(`/api/negotiator/${id}`, { method: 'DELETE' })
-        if (!res.ok) throw new Error('Failed to delete')
-        if (conversationId === id) startNewConversation()
-        toast.success('Conversation deleted')
-      } catch {
-        toast.error('Failed to delete conversation')
-      }
+      // NOTE: The API DELETE is already called by ConversationsPanel.handleDeleteConfirm.
+      // This callback only handles client-side side effects.
+      if (conversationId === id) startNewConversation()
+      toast.success('Conversation deleted')
     },
     [conversationId, startNewConversation],
   )
@@ -234,13 +230,14 @@ export function NegotiatorClient({
             <Plus className="size-4" />
           </Button>
         </div>
-        {/* Sidebar content */}
+          {/* Sidebar content */}
         <ConversationsPanel
           className="flex-1 overflow-hidden"
           activeId={conversationId}
           onSelect={loadConversation}
           onNew={startNewConversation}
           onDelete={deleteConversation}
+          refreshTrigger={conversationId}
         />
       </aside>
 
@@ -288,6 +285,7 @@ export function NegotiatorClient({
                 onNew={() => { startNewConversation(); setSidebarOpen(false) }}
                 onDelete={deleteConversation}
                 onClose={() => setSidebarOpen(false)}
+                refreshTrigger={conversationId}
               />
             </motion.aside>
           </>

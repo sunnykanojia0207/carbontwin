@@ -33,6 +33,7 @@ interface ConversationsPanelProps {
   onDelete: (id: string) => void
   onClose?: () => void
   className?: string
+  refreshTrigger?: string
 }
 
 function timeAgo(dateStr: string | null | undefined): string {
@@ -57,6 +58,7 @@ export function ConversationsPanel({
   onDelete,
   onClose,
   className,
+  refreshTrigger,
 }: ConversationsPanelProps) {
   const [conversations, setConversations] = React.useState<ConversationSummary[]>([])
   const [loading, setLoading] = React.useState(true)
@@ -77,9 +79,10 @@ export function ConversationsPanel({
     }
   }, [])
 
+  // Re-fetch on mount AND whenever a new conversation is created or selected
   React.useEffect(() => {
     fetchConversations()
-  }, [fetchConversations])
+  }, [fetchConversations, refreshTrigger])
 
   const handleDeleteConfirm = React.useCallback(
     async (id: string) => {
