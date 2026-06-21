@@ -1,6 +1,4 @@
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getSettingsData } from '@/lib/services/settings.service'
 import { SettingsTabs } from '@/components/settings/settings-tabs'
 
@@ -18,7 +16,7 @@ export const metadata = {
 }
 
 export default async function SettingsPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const data = await getSettingsData(session!.user!.id)
 
   if (!data) {

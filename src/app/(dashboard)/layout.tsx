@@ -10,9 +10,7 @@ import {
   MessageSquare,
 } from 'lucide-react'
 
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { Logo } from '@/components/shared/logo'
 import { ThemeToggle } from '@/components/shared/theme-toggle'
 import { SignOutButton } from '@/components/auth/sign-out-button'
@@ -41,7 +39,7 @@ export default async function DashboardLayout({
 }: {
   children: React.ReactNode
 }) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const name = session?.user?.name ?? session?.user?.email ?? 'You'
   const initials = name
     .split(' ')

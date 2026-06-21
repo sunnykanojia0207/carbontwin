@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { db, active } from '@/lib/db'
 import {
   estimateApplianceCarbon,
@@ -115,7 +116,7 @@ const BAU_DRIFT = 0.01 // 1% natural efficiency improvement / yr
 const OPTIMIZED_RATE = 0.08 // 8% reduction / yr with recommendations
 const AGGRESSIVE_RATE = 0.15 // 15% reduction / yr with max effort
 
-export async function getTwinData(userId: string): Promise<TwinData> {
+export async function _getTwinData(userId: string): Promise<TwinData> {
   // --- Load user profile + appliances + recent detections in parallel ---
   const [user, appliances, detections] = await Promise.all([
     db.user.findFirst({
@@ -437,3 +438,13 @@ function emptyTwin(): TwinData {
     opportunities: [],
   }
 }
+
+/**
+ * Cached wrapper — revalidates every 120 seconds.
+ * Twin data changes less frequently than dashboard data.
+ */
+export const getTwinData = (userId: string) =>
+  unstable_cache(_getTwinData, ['twin-data'], {
+    revalidate: 120,
+    tags: [`twin-${userId}`],
+  })(userId)

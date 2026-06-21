@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { SlidersHorizontal, ArrowRight, Sparkles, Lightbulb, Leaf, Car, ShoppingBag, Zap } from 'lucide-react'
 
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getTwinData } from '@/lib/services/twin.service'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -31,7 +29,7 @@ const EXAMPLE_SCENARIOS = [
 ]
 
 export default async function SimulatorPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const data = await getTwinData(session!.user!.id)
 
   // --- Empty state ---

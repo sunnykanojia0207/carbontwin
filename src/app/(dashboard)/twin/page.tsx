@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { Camera, ArrowRight, Sparkles, Home, Car, UtensilsCrossed, ShoppingBag, Zap } from 'lucide-react'
 
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getTwinData } from '@/lib/services/twin.service'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -31,7 +29,7 @@ const DIMENSION_PREVIEWS = [
 ]
 
 export default async function TwinPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const data = await getTwinData(session!.user!.id)
 
   // --- Empty state ---

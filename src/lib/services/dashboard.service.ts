@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { db, active } from '@/lib/db'
 
 // ============================================================================
@@ -139,7 +140,7 @@ function startOfWeekUTC(): Date {
  * Returns `isEmpty: true` when the user has no confirmed detections,
  * so the page can render the empty-state CTA instead of zeroed charts.
  */
-export async function getDashboardData(userId: string): Promise<DashboardData> {
+async function _getDashboardData(userId: string): Promise<DashboardData> {
   const now = new Date()
   const weekStart = startOfWeekUTC()
   const lastWeekStart = new Date(weekStart)
@@ -155,7 +156,7 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
         where: {
           deletedAt: null,
           status: { in: ['CONFIRMED', 'EDITED'] },
-          scan: { userId, deletedAt: null },
+          scan: { userId, deletedAt: null, createdAt: { gte: fourteenDaysAgo } },
           // Detection has no date field of its own; use scan.createdAt as proxy.
           // We'll bucket by scan date below.
         },
@@ -440,3 +441,13 @@ export async function getDashboardData(userId: string): Promise<DashboardData> {
     },
   }
 }
+
+/**
+ * Cached wrapper — revalidates every 60 seconds.
+ * Each user gets their own cache entry, keyed by userId.
+ */
+export const getDashboardData = (userId: string) =>
+  unstable_cache(_getDashboardData, ['dashboard-data'], {
+    revalidate: 60,
+    tags: [`dashboard-${userId}`],
+  })(userId)

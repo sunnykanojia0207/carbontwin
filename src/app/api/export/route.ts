@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from '@/lib/auth'
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { exportAsJson, exportAsCsv, getExportSummary } from '@/lib/services/export.service'
 
 // ============================================================================
@@ -13,7 +12,7 @@ import { exportAsJson, exportAsCsv, getExportSummary } from '@/lib/services/expo
 // ============================================================================
 
 export async function GET(request: Request) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }

@@ -1,5 +1,4 @@
-import { getServerSession } from '@/lib/auth'
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { NegotiatorClient } from '@/components/negotiator/negotiator-client'
 import type { ChatMessageData } from '@/components/negotiator/chat-message'
@@ -16,7 +15,7 @@ export const metadata = {
 }
 
 export default async function NegotiatorPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const userId = session!.user!.id
 
   // Load the most recent negotiator conversation for context memory

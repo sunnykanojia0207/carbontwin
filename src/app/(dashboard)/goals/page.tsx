@@ -1,8 +1,6 @@
 import { Target, Leaf, Zap, ShoppingBag, Car } from 'lucide-react'
 
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getGoalsData } from '@/lib/services/goals.service'
 import { Card, CardContent } from '@/components/ui/card'
 import { EmptyState, type AchievementPreview } from '@/components/dashboard/empty-state'
@@ -31,7 +29,7 @@ const GOAL_ACHIEVEMENTS: AchievementPreview[] = [
 ]
 
 export default async function GoalsPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const data = await getGoalsData(session!.user!.id)
 
   // --- Empty state ---

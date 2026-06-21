@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { Sparkles, ArrowRight } from 'lucide-react'
 
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getDashboardData } from '@/lib/services/dashboard.service'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -23,7 +21,7 @@ import {
 // ============================================================================
 
 export default async function DashboardPage() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const firstName = session?.user?.name?.split(' ')[0] ?? 'there'
   const userId = session!.user!.id
 

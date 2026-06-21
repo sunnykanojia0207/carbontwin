@@ -10,15 +10,20 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 
 // ============================================================================
-// PageTabs — reusable, accessible, URL-synced tab system.
+// PageTabs — reusable, accessible tab system.
 //
 // Features:
-//   - URL-synced: tab state persisted in search params (default: ?tab=...)
+//   - URL-synced (optional): tab state persisted in search params
 //   - Variants: primary (underlined), secondary (filled), pills
 //   - Layout: horizontal (scrollable on mobile) or vertical (sidebar-style)
 //   - Accessible: full keyboard nav, ARIA attributes via Radix Tabs
 //   - Animated indicator: subtle framer-motion layout animation
 //   - Dark mode: uses CSS variables from shadcn/ui
+//
+// Performance note:
+//   When syncUrl=false (default), tab switches are pure client-state — no
+//   router.push, no server round-trip, instant response.
+//   Set syncUrl=true only when you need deep-linkable tabs.
 // ============================================================================
 
 // ---------------------------------------------------------------------------
@@ -47,6 +52,12 @@ export interface PageTabsProps {
   defaultTab?: string
   /** URL search param key used for persistence (default: 'tab') */
   paramKey?: string
+  /**
+   * Whether to sync the active tab with the URL search params.
+   * Default: false (pure client state — instant tab switches, no router.push).
+   * Set to true only for deep-linkable tabs.
+   */
+  syncUrl?: boolean
   /**
    * Visual style variant:
    * - 'primary'   → underlined active state (default)
@@ -100,6 +111,7 @@ export function PageTabs({
   tabs,
   defaultTab,
   paramKey = 'tab',
+  syncUrl = false,
   variant = 'primary',
   layout = 'horizontal',
   className,
@@ -108,17 +120,26 @@ export function PageTabs({
   const router = useRouter()
   const pathname = usePathname()
 
-  // Use a ref to avoid recreating handleValueChange when tabs array changes
-  const tabsRef = React.useRef(tabs)
-  tabsRef.current = tabs
+  // Derive initial tab from URL only when syncUrl is enabled
+  const urlTab = syncUrl ? (searchParams.get(paramKey) ?? '') : ''
+  const initialTab = urlTab || defaultTab || tabs[0]?.value || ''
 
-  // Determine the active tab from URL or default
-  const activeTab = searchParams.get(paramKey) || defaultTab || tabs[0]?.value || ''
+  const [activeTab, setActiveTab] = React.useState(initialTab)
+
+  // Keep local state in sync when the URL changes externally (e.g. back button)
+  // Only relevant when syncUrl is true.
+  React.useEffect(() => {
+    if (!syncUrl) return
+    const urlValue = searchParams.get(paramKey) || defaultTab || tabs[0]?.value || ''
+    setActiveTab(urlValue)
+  }, [syncUrl, searchParams, paramKey, defaultTab, tabs])
 
   const handleValueChange = React.useCallback(
     (value: string) => {
+      setActiveTab(value)
+      if (!syncUrl) return
       const params = new URLSearchParams(searchParams.toString())
-      const firstTabValue = tabsRef.current[0]?.value || ''
+      const firstTabValue = tabs[0]?.value || ''
       if (value === (defaultTab || firstTabValue)) {
         params.delete(paramKey)
       } else {
@@ -127,7 +148,7 @@ export function PageTabs({
       const query = params.toString()
       router.push(query ? `${pathname}?${query}` : pathname, { scroll: false })
     },
-    [router, pathname, searchParams, paramKey, defaultTab],
+    [syncUrl, router, pathname, searchParams, paramKey, defaultTab, tabs],
   )
 
   const styles = VARIANT_STYLES[variant] ?? VARIANT_STYLES.primary

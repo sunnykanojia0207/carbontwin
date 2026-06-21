@@ -1,9 +1,7 @@
 import Link from 'next/link'
 import { Camera, ArrowRight, Inbox, DollarSign, Leaf, Lightbulb, BarChart4 } from 'lucide-react'
 
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getResultsData } from '@/lib/services/results.service'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -34,7 +32,7 @@ export default async function ResultsPage({
 }: {
   searchParams: Promise<{ scanId?: string }>
 }) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   const { scanId } = await searchParams
   const data = await getResultsData(session!.user!.id, scanId)
 

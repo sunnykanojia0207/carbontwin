@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { getTwinData } from '@/lib/services/twin.service'
 import { buildSystemPrompt, PROMPT_VERSION } from '@/lib/ai/negotiator-prompt'
@@ -26,7 +24,7 @@ type HistoryMessage = {
 }
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }

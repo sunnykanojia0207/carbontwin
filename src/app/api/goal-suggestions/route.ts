@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getTwinData } from '@/lib/services/twin.service'
 import { generateGoalSuggestions } from '@/lib/ai'
 
@@ -16,7 +14,7 @@ import { generateGoalSuggestions } from '@/lib/ai'
 export const maxDuration = 30
 
 export async function POST() {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }

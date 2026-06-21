@@ -1,7 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from '@/lib/auth'
-
-import { authOptions } from '@/lib/auth'
+import { getSession } from '@/lib/auth'
 import { getResultsData } from '@/lib/services/results.service'
 import { formatCo2e } from '@/lib/emissions/appliance-calc'
 import { generateInsights } from '@/lib/ai'
@@ -17,7 +15,7 @@ import { generateInsights } from '@/lib/ai'
 export const maxDuration = 30
 
 export async function POST(request: Request) {
-  const session = await getServerSession(authOptions)
+  const session = await getSession()
   if (!session?.user?.id) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }

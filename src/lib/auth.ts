@@ -137,3 +137,15 @@ export const authOptions: NextAuthOptions = {
 
 /** Helper to get the server session (used in Server Components / Route Handlers). */
 export { getServerSession } from 'next-auth/next'
+
+// ============================================================================
+// Request-level session cache
+// ----------------------------------------------------------------------------
+// Next.js `cache()` deduplicates calls within the same server request, so
+// the layout and page calling getServerSession() in the same render only
+// hit the JWT decode once instead of twice.
+// ============================================================================
+import { cache } from 'react'
+import { getServerSession as _getServerSession } from 'next-auth/next'
+
+export const getSession = cache(() => _getServerSession(authOptions))

@@ -1,3 +1,4 @@
+import { unstable_cache } from 'next/cache'
 import { db, active } from '@/lib/db'
 
 // ============================================================================
@@ -69,7 +70,7 @@ function daysSince(date: Date): number {
   return Math.max(0, Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24)))
 }
 
-export async function getGoalsData(userId: string): Promise<GoalsData> {
+export async function _getGoalsData(userId: string): Promise<GoalsData> {
   const [goals, completedGoals, detectionCount, goalCount] = await Promise.all([
     db.goal.findMany({
       where: { userId, deletedAt: null, status: 'ACTIVE' },
@@ -284,3 +285,12 @@ function computeAchievements(
     },
   ]
 }
+
+/**
+ * Cached wrapper — revalidates every 60 seconds.
+ */
+export const getGoalsData = (userId: string) =>
+  unstable_cache(_getGoalsData, ['goals-data'], {
+    revalidate: 60,
+    tags: [`goals-${userId}`],
+  })(userId)
