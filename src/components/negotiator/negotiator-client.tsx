@@ -9,6 +9,11 @@ import {
   PanelLeft,
   Loader2,
   Plus,
+  Car,
+  Home,
+  UtensilsCrossed,
+  ShoppingBag,
+  Plane,
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { AnimatePresence, motion } from 'framer-motion'
@@ -419,20 +424,23 @@ function EmptyState({ onPromptClick }: { onPromptClick: (p: string) => void }) {
           {/* Capability pills */}
           <div className="flex flex-wrap justify-center gap-2">
             {[
-              { icon: '🚗', label: 'Transport' },
-              { icon: '🏠', label: 'Home energy' },
-              { icon: '🥦', label: 'Diet' },
-              { icon: '🛒', label: 'Lifestyle' },
-              { icon: '✈️', label: 'Travel' },
-            ].map((chip) => (
-              <span
-                key={chip.label}
-                className="inline-flex items-center gap-1.5 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground"
-              >
-                <span>{chip.icon}</span>
-                {chip.label}
-              </span>
-            ))}
+              { icon: Car, label: 'Transport' },
+              { icon: Home, label: 'Home energy' },
+              { icon: UtensilsCrossed, label: 'Diet' },
+              { icon: ShoppingBag, label: 'Lifestyle' },
+              { icon: Plane, label: 'Travel' },
+            ].map((chip) => {
+              const Icon = chip.icon
+              return (
+                <span
+                  key={chip.label}
+                  className="inline-flex items-center gap-1.5 rounded-full border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground"
+                >
+                  <Icon className="size-3.5" />
+                  {chip.label}
+                </span>
+              )
+            })}
           </div>
         </div>
 

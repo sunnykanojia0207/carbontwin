@@ -74,7 +74,7 @@ export function AuthBrandPanel() {
             MK
           </span>
           <span>
-            <strong className="text-foreground font-medium">Maya K.</strong> ·
+            <strong className="text-foreground font-medium">Sunny K.</strong> ·
             early tester
           </span>
         </figcaption>

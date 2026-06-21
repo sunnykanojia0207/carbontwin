@@ -10,6 +10,7 @@ import {
   Target,
   ArrowRight,
   TreePine,
+  Sparkles,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -101,8 +102,8 @@ export function DashboardHero({
               <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
                 {greeting}, {firstName}
               </h1>
-              <span className="hidden animate-[wave_2.5s_ease-in-out_infinite] text-2xl sm:inline-block">
-                👋
+              <span className="bg-primary/10 text-primary hidden size-8 items-center justify-center rounded-full sm:inline-flex">
+                <Sparkles className="size-4" />
               </span>
             </div>
             <p className="mt-0.5 text-sm text-muted-foreground">{date}</p>

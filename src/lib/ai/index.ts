@@ -358,8 +358,8 @@ function generateLocalFallbackAdvice(
   // Pick the best opportunity
   const topOpp = opportunities?.[0]
   const savings = topOpp?.potentialKg ?? Math.round(totalKg * 0.1)
-  const difficultyLabels: Record<string, string> = { EASY: '🟢 Easy', MEDIUM: '🟡 Medium', HARD: '🔴 Challenging' }
-  const difficulty = difficultyLabels[topOpp?.difficulty ?? 'EASY'] ?? '🟢 Easy'
+  const difficultyLabels: Record<string, string> = { EASY: 'Easy', MEDIUM: 'Medium', HARD: 'Challenging' }
+  const difficulty = difficultyLabels[topOpp?.difficulty ?? 'EASY'] ?? 'Easy'
   const savingsTons = (savings / 1000).toFixed(1)
   const savingsPercent = totalKg > 0 ? Math.round((savings / totalKg) * 100) : 10
 
@@ -394,9 +394,9 @@ function generateLocalFallbackAdvice(
 ${recommendations.join('\n\n')}
 
 **Top opportunity: ${topOpp?.title ?? `Reduce your ${topDimLabel}`}**
-- 💨 **CO₂ reduction:** ${savingsTons} tonnes/yr (${savingsPercent}% of your footprint)
-- 💰 **Cost impact:** ~$${costSavings}/yr saved
-- 📊 **Difficulty:** ${difficulty}
+- **CO₂ reduction:** ${savingsTons} tonnes/yr (${savingsPercent}% of your footprint)
+- **Cost impact:** ~$${costSavings}/yr saved
+- **Difficulty:** ${difficulty}
 
 ${intentInfo ? `\n**About your question:** ${intentInfo}` : `\n**Tip:** Your ${topDimLabel} is your biggest lever. Even a 10% cut there saves ~${Math.round(totalKg * 0.1).toLocaleString()} kg/yr.`}
 

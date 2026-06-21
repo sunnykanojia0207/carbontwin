@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { MessageSquare, Plus, Trash2, Clock, Loader2 } from 'lucide-react'
+import { MessageSquare, Plus, Trash2, Clock, Loader2, X } from 'lucide-react'
 
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { cn } from '@/lib/utils'
@@ -214,9 +214,10 @@ export function ConversationsPanel({
                               </button>
                               <button
                                 onClick={() => setConfirmingId(null)}
-                                className="rounded px-1 py-1 text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                                className="rounded p-1 text-muted-foreground hover:text-foreground transition-colors"
+                                aria-label="Cancel"
                               >
-                                ✕
+                                <X className="size-3.5" />
                               </button>
                             </div>
                           ) : (
