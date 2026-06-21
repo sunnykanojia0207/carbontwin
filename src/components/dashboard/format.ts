@@ -9,9 +9,10 @@ export function formatKg(kg: number): string {
   return `${kg.toFixed(1)}kg`
 }
 
-/** Relative time ("2h ago", "3d ago"). */
-export function timeAgo(date: Date): string {
-  const diff = Date.now() - date.getTime()
+/** Relative time ("2h ago", "3d ago"). Accepts Date or ISO string (serialized from server). */
+export function timeAgo(date: Date | string): string {
+  const d = typeof date === 'string' ? new Date(date) : date
+  const diff = Date.now() - d.getTime()
   const mins = Math.floor(diff / 60000)
   if (mins < 1) return 'just now'
   if (mins < 60) return `${mins}m ago`

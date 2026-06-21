@@ -11,8 +11,9 @@ import type { DashboardData } from '@/lib/services/dashboard.service'
 // scannable, with days remaining and on-track status.
 // ============================================================================
 
-function daysUntil(date: Date): number {
-  return Math.max(0, Math.ceil((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
+function daysUntil(date: Date | string): number {
+  const d = typeof date === 'string' ? new Date(date) : date
+  return Math.max(0, Math.ceil((d.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
 }
 
 export function GoalsProgress({ goals }: { goals: DashboardData['goals'] }) {
