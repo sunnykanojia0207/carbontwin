@@ -20,6 +20,7 @@ export default function DashboardError({
 }) {
   React.useEffect(() => {
     // Log to console (Vercel picks this up); swap for Sentry in production
+    // eslint-disable-next-line no-console
     console.error('[dashboard-error]', error)
   }, [error])
 

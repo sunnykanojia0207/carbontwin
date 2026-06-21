@@ -1,11 +1,10 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CheckCircle2, Clock, Sparkles, MoreVertical } from 'lucide-react'
+import { CheckCircle2, Clock, Sparkles } from 'lucide-react'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import { formatCo2e } from '@/lib/emissions/appliance-calc'
 import type { GoalWithProgress } from '@/lib/services/goals.service'
 

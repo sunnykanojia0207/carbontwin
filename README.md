@@ -4,9 +4,7 @@
 
 AI-powered personal carbon footprint platform that helps individuals understand, track, predict, and reduce their emissions using AI-powered insights.
 
-![CarbonTwin](public/og.png)
-
-## ✨ Features
+## Features
 
 - **Invisible Carbon Detector** — Snap a room photo; AI identifies appliances and estimates their carbon impact
 - **Digital Climate Twin** — A personal carbon persona that evolves with your lifestyle
@@ -17,7 +15,7 @@ AI-powered personal carbon footprint platform that helps individuals understand,
 - **Dashboard** — Real-time KPIs, trends, category breakdowns, and AI insights
 - **Settings** — Full profile, preferences, theme, notifications, privacy, and API status management
 
-## 🛠 Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
@@ -26,7 +24,7 @@ AI-powered personal carbon footprint platform that helps individuals understand,
 | **Styling** | Tailwind CSS 4 + shadcn/ui (New York) |
 | **Charts** | Recharts |
 | **Animations** | Framer Motion |
-| **Database** | PostgreSQL (SQLite for dev) + Prisma ORM |
+| **Database** | PostgreSQL (Neon) + Prisma ORM |
 | **Auth** | NextAuth.js v4 (Credentials + Google OAuth) |
 | **AI** | Google Gemini via @google/generative-ai |
 | **State** | Zustand + TanStack Query |
@@ -183,6 +181,86 @@ All AI features go through a unified facade (`src/lib/ai/index.ts`) that provide
 | `bun run db:push` | Push schema to database |
 | `bun run db:generate` | Regenerate Prisma client |
 | `bun run db:migrate` | Create + apply migration |
+| `bun run test` | Run tests once |
+| `bun run test:watch` | Run tests in watch mode |
+| `bun run test:coverage` | Run tests with coverage report |
+
+## Testing
+
+### Test Stack
+
+| Tool | Purpose |
+|------|---------|
+| **Vitest** | Test runner (fast, Vite-native) |
+| **React Testing Library** | Component rendering & interaction testing |
+| **jsdom** | Browser environment simulation |
+
+### Running Tests
+
+```bash
+# Run all tests once
+bun run test
+
+# Watch mode (auto-re-runs on changes)
+bun run test:watch
+
+# Run with coverage report
+bun run test:coverage
+```
+
+### Test Structure
+
+```
+src/
+├── lib/
+│   └── __tests__/
+│       ├── format.test.ts          — timeAgo, daysUntil
+│       ├── carbon-calc.test.ts     — appliance CO₂, score, projections
+│       ├── ai-fallback.test.ts     — AI detection & negotiator fallbacks
+│       └── errors.test.ts          — error handling utilities
+├── components/
+│   ├── dashboard/__tests__/        — DashboardHero, KpiRow, EmptyState, SectionCard
+│   ├── goals/__tests__/            — GoalCard, GoalsHeader, ProgressChart
+│   ├── simulator/__tests__/        — ScenarioCards, SimulationSummary, charts
+│   ├── settings/__tests__/         — ThemeSection, NotificationsSection, ProfileSection
+│   └── auth/__tests__/             — LoginForm, RegisterForm, ForgotPasswordForm
+```
+
+### Coverage
+
+```bash
+bun run test:coverage
+```
+
+Generates reports in `coverage/`:
+- **Text table** — printed to console
+- **HTML** — `coverage/index.html` (view in browser)
+- **LCOV** — `coverage/lcov.info` (CI integration)
+
+Current coverage targets: 15% statements, 10% branches, 10% functions, 15% lines.
+Coverage grows as the test suite expands.
+
+## Code Quality
+
+### Quality Gates
+
+Every change must pass:
+
+1. **TypeScript** — `strict: true`, zero `any` annotations, zero `@ts-*` suppression directives
+2. **ESLint** — `npm run lint` returns zero errors, zero warnings
+3. **Build** — `npm run build` compiles successfully
+4. **Tests** — `npm run test` passes all 76+ tests
+
+### Key Practices
+
+- **No `any`** — TypeScript strict mode, explicit types everywhere
+- **No emoji in code** — All visual indicators use `lucide-react` icons
+- **Error boundaries** — `ErrorBoundary` component catches render crashes
+- **Safe fetch** — `safeFetch<T>()` typed wrapper with retries & timeouts
+- **Structured errors** — `ApiError` class with code, status, fieldErrors
+- **User-safe messages** — `getUserFacingMessage()` never exposes internals
+- **Unused import elimination** — ESLint `no-unused-vars` enforced
+- **Console discipline** — `console.log` flagged, only intentional logging allowed
 
 ## 🚢 Deployment
 

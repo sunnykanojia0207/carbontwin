@@ -1,4 +1,4 @@
-import { Reveal, Stagger, StaggerItem } from '@/components/marketing/motion/reveal'
+import { Stagger, StaggerItem } from '@/components/marketing/motion/reveal'
 import { SectionHeading } from '@/components/marketing/section-heading'
 
 // ============================================================================

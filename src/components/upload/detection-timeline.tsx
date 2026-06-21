@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import {
   Upload,
   Eye,
@@ -44,6 +44,7 @@ export function DetectionTimeline({
       {STEPS.map((step, i) => {
         const isDone = completed || i < currentStep
         const isActive = !completed && !error && i === currentStep
+        const isError = !completed && !!error && i === currentStep
         const isPending = i > currentStep && !completed
 
         return (
@@ -56,17 +57,15 @@ export function DetectionTimeline({
                   isDone && 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400',
                   isActive && 'bg-primary/15 text-primary',
                   isPending && 'bg-muted text-muted-foreground/50',
-                  error && isActive && 'bg-destructive/10 text-destructive',
+                  isError && 'bg-destructive/10 text-destructive',
                 )}
               >
                 {isDone ? (
                   <CheckCircle2 className="size-4" />
+                ) : isError ? (
+                  <span className="text-xs font-bold">!</span>
                 ) : isActive ? (
-                  error ? (
-                    <span className="text-xs font-bold">!</span>
-                  ) : (
-                    <Loader2 className="size-4 animate-spin" />
-                  )
+                  <Loader2 className="size-4 animate-spin" />
                 ) : (
                   <step.icon className="size-4" />
                 )}
@@ -108,7 +107,7 @@ export function DetectionTimeline({
                   isPending ? 'text-muted-foreground/40' : 'text-muted-foreground',
                 )}
               >
-                {error && isActive ? error : step.desc}
+                  {isError ? error : step.desc}
               </p>
             </motion.div>
           </div>

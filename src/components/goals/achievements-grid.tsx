@@ -60,7 +60,6 @@ export function AchievementsGrid({
   achievements: Achievement[]
 }) {
   const earned = achievements.filter((a) => a.earned)
-  const inProgress = achievements.filter((a) => !a.earned)
 
   return (
     <SectionCard

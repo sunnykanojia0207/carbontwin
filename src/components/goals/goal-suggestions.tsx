@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Sparkles, Loader2, RefreshCw, ArrowRight, Lightbulb } from 'lucide-react'
+import { Loader2, RefreshCw, ArrowRight, Lightbulb } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 

@@ -68,7 +68,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      allowDangerousEmailAccountLinking: true,
+
     }),
   )
 }
@@ -96,7 +96,7 @@ export const authOptions: NextAuthOptions = {
       }
       return token
     },
-    async signIn({ user, account }) {
+    async signIn({ user, account: _account }) {
       // Block soft-deleted users from re-authenticating.
       if (user?.email) {
         const existing = await db.user.findFirst({

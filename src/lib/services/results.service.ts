@@ -1,11 +1,9 @@
-import { db, active } from '@/lib/db'
+import { db } from '@/lib/db'
 import {
   estimateApplianceCarbon,
-  formatCo2e,
 } from '@/lib/emissions/appliance-calc'
 import {
   estimateApplianceCost,
-  formatCost,
   getSuggestionsForType,
   computeSuggestionSavings,
   type ImprovementSuggestion,

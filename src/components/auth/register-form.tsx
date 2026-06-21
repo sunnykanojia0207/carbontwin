@@ -4,7 +4,7 @@ import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { signIn } from 'next-auth/react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, AlertCircle } from 'lucide-react'
 
@@ -48,7 +48,7 @@ export function RegisterForm() {
     defaultValues: { name: '', email: '', password: '', confirmPassword: '' },
   })
 
-  const password = form.watch('password')
+  const password = useWatch({ control: form.control, name: 'password' })
   const isSubmitting = form.formState.isSubmitting
 
   const onSubmit = async (values: RegisterInput) => {

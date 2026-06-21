@@ -1,4 +1,4 @@
-import { AlertTriangle, ShieldAlert } from 'lucide-react'
+import { ShieldAlert } from 'lucide-react'
 
 import { SectionCard } from '@/components/dashboard/section-card'
 import { Badge } from '@/components/ui/badge'

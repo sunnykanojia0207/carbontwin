@@ -1,9 +1,6 @@
 import { unstable_cache } from 'next/cache'
 import { db, active } from '@/lib/db'
-import {
-  estimateApplianceCarbon,
-  formatCo2e,
-} from '@/lib/emissions/appliance-calc'
+import { estimateApplianceCarbon } from '@/lib/emissions/appliance-calc'
 
 // ============================================================================
 // Climate Twin data service — server-only.
@@ -366,7 +363,7 @@ function computeTier(annualKg: number): TwinData['tier'] {
   return { name: 'Drift', color: '#ef4444', description: 'High — above average' }
 }
 
-function getRiskReason(key: TwinDimension['key'], kg: number): string {
+function getRiskReason(key: TwinDimension['key'], _kg: number): string {
   const reasons: Record<TwinDimension['key'], string> = {
     home: 'Home energy is a fixed daily draw — heating, cooling, and standby power run regardless of awareness.',
     appliances: 'Older or inefficient appliances can draw 2-3× more power than modern equivalents.',

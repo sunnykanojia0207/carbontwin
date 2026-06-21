@@ -57,6 +57,7 @@ export async function GET(request: Request) {
       },
     })
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Export failed:', error)
     return NextResponse.json(
       { error: 'Export failed. Please try again.' },

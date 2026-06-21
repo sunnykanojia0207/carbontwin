@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SlidersHorizontal, ArrowRight, Sparkles, Lightbulb, Leaf, Car, ShoppingBag, Zap } from 'lucide-react'
+import { SlidersHorizontal, ArrowRight, Lightbulb, Leaf, Car, ShoppingBag, Zap } from 'lucide-react'
 
 import { getSession } from '@/lib/auth'
 import { getTwinData } from '@/lib/services/twin.service'

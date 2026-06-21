@@ -4,7 +4,6 @@ import * as React from 'react'
 import { Plus, Loader2, Sparkles, Check } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
-import { z } from 'zod'
 
 import { Button } from '@/components/ui/button'
 import {

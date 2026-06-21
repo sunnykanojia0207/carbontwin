@@ -127,6 +127,7 @@ export async function requestPasswordReset(
     // Production: replace with `await sendEmail(email, resetLink)`.
     if (process.env.NODE_ENV !== 'production') {
       const resetUrl = `${process.env.NEXTAUTH_URL ?? 'http://localhost:3000'}/reset-password?token=${token}`
+      // eslint-disable-next-line no-console
       console.log(`[forgot-password] Reset link for ${email}: ${resetUrl}`)
     }
   }

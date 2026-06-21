@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Loader2, AlertCircle, CheckCircle2 } from 'lucide-react'
 
@@ -44,7 +44,7 @@ export function ResetPasswordForm() {
     defaultValues: { token, password: '', confirmPassword: '' },
   })
 
-  const password = form.watch('password')
+  const password = useWatch({ control: form.control, name: 'password' })
   const isSubmitting = form.formState.isSubmitting
   const disabled = !token || isSubmitting || done
 

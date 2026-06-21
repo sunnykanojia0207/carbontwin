@@ -108,7 +108,7 @@ export const ForecastGraphs = memo(function ForecastGraphs({
           <ChartTooltip
             content={
               <ChartTooltipContent
-                formatter={(value, name) => (
+                formatter={(value, _name) => (
                   <span className="font-mono font-medium tabular-nums">
                     {formatCo2e(Number(value))}
                   </span>

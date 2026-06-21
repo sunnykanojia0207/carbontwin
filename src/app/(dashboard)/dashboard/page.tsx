@@ -7,10 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { DashboardTabs } from '@/components/dashboard/dashboard-tabs'
 import { DashboardHero } from '@/components/dashboard/dashboard-hero'
-import {
-  LoadDemoDataButton,
-  ResetDataButton,
-} from '@/components/dashboard/demo-data-button'
+import { LoadDemoDataButton } from '@/components/dashboard/demo-data-button'
 
 // ============================================================================
 // Dashboard home — the command center.

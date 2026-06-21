@@ -16,7 +16,6 @@ import {
   X,
   Trash2,
   Plus,
-  RotateCcw,
   Loader2,
   type LucideIcon,
 } from 'lucide-react'

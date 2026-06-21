@@ -16,8 +16,8 @@ export const maxDuration = 60
 export async function GET(request: Request) {
   // Verify the cron secret
   const authHeader = request.headers.get('authorization')
-  const expected = `Bearer ${process.env.CRON_SECRET}`
-  if (process.env.CRON_SECRET && authHeader !== expected) {
+  const cronSecret = process.env.CRON_SECRET
+  if (!cronSecret || authHeader !== `Bearer ${cronSecret}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
 
@@ -37,6 +37,7 @@ export async function GET(request: Request) {
 
     // In a full implementation, this would call generateInsights() for each
     // user and store the result. For now, we log the count.
+    // eslint-disable-next-line no-console
     console.log(`[cron] weekly-insights: ${activeUsers.length} active users`)
 
     return NextResponse.json({
@@ -45,6 +46,7 @@ export async function GET(request: Request) {
       timestamp: new Date().toISOString(),
     })
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('[cron] weekly-insights error:', error)
     return NextResponse.json(
       { error: 'Cron job failed' },

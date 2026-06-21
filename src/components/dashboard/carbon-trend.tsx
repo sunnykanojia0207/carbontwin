@@ -10,7 +10,7 @@ import {
   ChartConfig,
 } from '@/components/ui/chart'
 import { SectionCard } from '@/components/dashboard/section-card'
-import { shortDate, formatKg } from '@/components/dashboard/format'
+import { shortDate } from '@/components/dashboard/format'
 import type { DashboardData } from '@/lib/services/dashboard.service'
 
 // ============================================================================

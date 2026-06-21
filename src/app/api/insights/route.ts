@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server'
 import { getSession } from '@/lib/auth'
 import { getResultsData } from '@/lib/services/results.service'
-import { formatCo2e } from '@/lib/emissions/appliance-calc'
 import { generateInsights } from '@/lib/ai'
 
 // ============================================================================

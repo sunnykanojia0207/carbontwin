@@ -1,5 +1,5 @@
 import { unstable_cache } from 'next/cache'
-import { db, active } from '@/lib/db'
+import { db } from '@/lib/db'
 
 // ============================================================================
 // Goals data service — server-only.
@@ -64,10 +64,6 @@ export type GoalsData = {
 
 function daysUntil(date: Date): number {
   return Math.max(0, Math.ceil((date.getTime() - Date.now()) / (1000 * 60 * 60 * 24)))
-}
-
-function daysSince(date: Date): number {
-  return Math.max(0, Math.floor((Date.now() - date.getTime()) / (1000 * 60 * 60 * 24)))
 }
 
 export async function _getGoalsData(userId: string): Promise<GoalsData> {
@@ -212,7 +208,6 @@ function computeAchievements(
   activeGoals: GoalWithProgress[],
   completed: GoalWithProgress[],
 ): Achievement[] {
-  const now = new Date()
   return [
     {
       slug: 'first-goal',

@@ -55,6 +55,7 @@ export function validateEnv(): {
   // AI vars are optional (the app degrades gracefully to deterministic mode)
   const missingAi = ai.filter((e) => !e.set)
   if (missingAi.length > 0) {
+    // eslint-disable-next-line no-console
     console.warn(
       `[ai] AI environment variables not set: ${missingAi.map((e) => e.name).join(', ')}. ` +
         `AI features will use deterministic fallbacks.`,

@@ -4,7 +4,6 @@ import * as React from 'react'
 import { useRouter } from 'next/navigation'
 import {
   Handshake,
-  Sparkles,
   AlertCircle,
   PanelLeft,
   Loader2,
@@ -18,7 +17,6 @@ import {
 import { toast } from 'sonner'
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { cn } from '@/lib/utils'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Button } from '@/components/ui/button'
 import { ChatMessage, type ChatMessageData } from '@/components/negotiator/chat-message'

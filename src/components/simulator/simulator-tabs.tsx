@@ -21,8 +21,6 @@ import {
   type ScenarioKey,
 } from '@/lib/simulator/scenarios'
 import type { TwinDimension } from '@/lib/services/twin.service'
-import { formatCo2e } from '@/lib/emissions/appliance-calc'
-import { formatCost } from '@/lib/emissions/appliance-suggestions'
 
 // ============================================================================
 // SimulatorTabs — tabbed layout for the What-If Simulator page.

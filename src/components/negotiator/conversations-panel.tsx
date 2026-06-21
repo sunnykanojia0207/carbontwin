@@ -56,7 +56,7 @@ export function ConversationsPanel({
   onSelect,
   onNew,
   onDelete,
-  onClose,
+  onClose: _onClose,
   className,
   refreshTrigger,
 }: ConversationsPanelProps) {

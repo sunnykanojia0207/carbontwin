@@ -1,7 +1,7 @@
 'use client'
 
 import { Flame } from 'lucide-react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 // ============================================================================
 // GoalsVisual — "Sustainability Goals". Three progress rings (weekly,
@@ -10,7 +10,6 @@ import { motion, useReducedMotion } from 'framer-motion'
 // ============================================================================
 
 export function GoalsVisual() {
-  const reduce = useReducedMotion()
   const goals = [
     { label: 'This week', pct: 0.78, kg: '12.4 / 16kg', tone: 'emerald' },
     { label: 'This month', pct: 0.52, kg: '38 / 72kg', tone: 'emerald' },

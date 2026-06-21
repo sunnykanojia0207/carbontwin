@@ -75,8 +75,6 @@ export function buildSystemPrompt(twinData: TwinData): string {
     .map((d) => `  ${d.label}: ${d.annualKg} kg/yr (${d.share}%)`)
     .join('\n')
 
-  const applianceSummary = twinData.dimensions.find((d) => d.key === 'appliances')?.detail ?? 'N/A'
-
   const userContext = `Profile:
   Name: ${twinData.profile.name}
   Region: ${twinData.profile.region ?? 'global'}

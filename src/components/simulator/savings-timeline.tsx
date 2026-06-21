@@ -1,6 +1,6 @@
 'use client'
 
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ReferenceLine, Line, ComposedChart } from 'recharts'
+import { Area, CartesianGrid, XAxis, YAxis, ReferenceLine, Line, ComposedChart } from 'recharts'
 
 import {
   ChartContainer,

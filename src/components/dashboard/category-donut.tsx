@@ -51,7 +51,7 @@ export const CategoryDonut = memo(function CategoryDonut({
                 content={
                   <ChartTooltipContent
                     nameKey="slug"
-                    formatter={(value, _name, item) => (
+                    formatter={(value, _name, _item) => (
                       <span className="font-mono font-medium tabular-nums">
                         {Number(value).toFixed(1)} kg
                       </span>

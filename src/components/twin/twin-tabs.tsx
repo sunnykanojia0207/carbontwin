@@ -35,6 +35,8 @@ interface TwinTabsProps {
 }
 
 export function TwinTabs({ data }: TwinTabsProps) {
+  const { dimensions, current, forecast, radar, scenarios, riskAreas, opportunities } = data
+
   const tabs: TabItem[] = React.useMemo(
     () => [
       {
@@ -44,7 +46,7 @@ export function TwinTabs({ data }: TwinTabsProps) {
         content: (
           <div className="space-y-4">
             <TwinHero data={data} />
-            <LifestyleInputs dimensions={data.dimensions} />
+            <LifestyleInputs dimensions={dimensions} />
           </div>
         ),
       },
@@ -54,7 +56,7 @@ export function TwinTabs({ data }: TwinTabsProps) {
         icon: Grid3x3,
         content: (
           <div className="space-y-4">
-            <LifestyleInputs dimensions={data.dimensions} />
+            <LifestyleInputs dimensions={dimensions} />
           </div>
         ),
       },
@@ -65,9 +67,9 @@ export function TwinTabs({ data }: TwinTabsProps) {
         content: (
           <div className="space-y-4">
             <ForecastGraphs
-              forecast={data.forecast}
-              parisTargetKg={data.current.parisTargetKg}
-              currentKg={data.current.totalAnnualKg}
+              forecast={forecast}
+              parisTargetKg={current.parisTargetKg}
+              currentKg={current.totalAnnualKg}
             />
           </div>
         ),
@@ -80,14 +82,14 @@ export function TwinTabs({ data }: TwinTabsProps) {
           <div className="grid gap-4 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <CategoryComparison
-                radar={data.radar}
-                dimensions={data.dimensions}
+                radar={radar}
+                dimensions={dimensions}
               />
             </div>
             <div className="lg:col-span-7">
               <ScenarioForecast
-                scenarios={data.scenarios}
-                parisTargetKg={data.current.parisTargetKg}
+                scenarios={scenarios}
+                parisTargetKg={current.parisTargetKg}
               />
             </div>
           </div>
@@ -101,21 +103,21 @@ export function TwinTabs({ data }: TwinTabsProps) {
           <div className="space-y-4">
             <div className="grid gap-4 lg:grid-cols-12">
               <div className="lg:col-span-6">
-                <RiskAreas riskAreas={data.riskAreas} />
+                <RiskAreas riskAreas={riskAreas} />
               </div>
               <div className="lg:col-span-6">
                 <ScenarioForecast
-                  scenarios={data.scenarios}
-                  parisTargetKg={data.current.parisTargetKg}
+                  scenarios={scenarios}
+                  parisTargetKg={current.parisTargetKg}
                 />
               </div>
             </div>
-            <AiRecommendations opportunities={data.opportunities} />
+            <AiRecommendations opportunities={opportunities} />
           </div>
         ),
       },
     ],
-    [data],
+    [data, dimensions, current, forecast, radar, scenarios, riskAreas, opportunities],
   )
 
   return (

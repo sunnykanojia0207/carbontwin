@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Upload, ImageIcon, X } from 'lucide-react'
+import { Upload, X } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 

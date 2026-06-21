@@ -16,7 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { SettingsSection, SettingsRow } from '@/components/settings/settings-section'
+import { SettingsSection } from '@/components/settings/settings-section'
 import { updateProfile } from '@/lib/settings-actions'
 import type { SettingsData } from '@/lib/services/settings.service'
 

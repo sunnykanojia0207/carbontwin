@@ -15,7 +15,6 @@ import {
 
 import { cn } from '@/lib/utils'
 import { formatCo2e } from '@/lib/emissions/appliance-calc'
-import type { DetectionResult } from '@/lib/ai/detect-appliances'
 import type { ApplianceCarbon } from '@/lib/emissions/appliance-calc'
 
 // ============================================================================

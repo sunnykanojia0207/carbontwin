@@ -1,5 +1,5 @@
 import { unstable_cache } from 'next/cache'
-import { db, active } from '@/lib/db'
+import { db } from '@/lib/db'
 
 // ============================================================================
 // Dashboard data service — server-only. Computes all aggregations the

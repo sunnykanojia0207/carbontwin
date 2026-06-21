@@ -88,7 +88,7 @@ export const TrendChart = memo(function TrendChart({
                     day: 'numeric',
                   })
                 }
-                formatter={(value, name) => (
+                formatter={(value, _name) => (
                   <span className="font-mono font-medium tabular-nums">
                     {Number(value).toFixed(1)} kg
                   </span>
